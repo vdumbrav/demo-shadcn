@@ -1,0 +1,182 @@
+/* ===================================================================
+   Tailwind v4 + shadcn/ui Theme Configuration
+   Generated from Figma Design System: C-Pay
+   =================================================================== */
+
+/* @theme inline directive для Tailwind v4 - маппинг переменных */
+@theme inline {
+  /* Fonts */
+  --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-geist-serif);
+  --font-mono: var(--font-geist-mono);
+
+  /* Colors - shadcn/ui semantic tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Chart colors */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar colors */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Border radius */
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-3xl: var(--radius-3xl);
+  --radius-4xl: var(--radius-4xl);
+
+  /* Shadows */
+  --shadow-2xs: var(--shadow-2xs);
+}
+
+/* ===================================================================
+   Base Variables (Light Mode Default)
+   =================================================================== */
+:root {
+  /* Fonts */
+  --font-geist-sans: "Geist", system-ui, -apple-system, sans-serif;
+  --font-geist-serif: "Georgia", serif;
+  --font-geist-mono: "Geist Mono", ui-monospace, monospace;
+
+  /* Border Radius (from Figma) */
+  --radius-xs: 12px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-4xl: 32px;
+
+  /* Shadow (from Figma) */
+  --shadow-2xs: 0 8px 0 0 #ff0000;
+
+  /* === LIGHT MODE COLORS === */
+  --background: #f7fee7; /* lime-50 */
+  --foreground: #0a0a0a; /* neutral-950 */
+
+  --card: #ffffff; /* white */
+  --card-foreground: #0a0a0a; /* neutral-950 */
+
+  --popover: #ffffff; /* white */
+  --popover-foreground: #0a0a0a; /* neutral-950 */
+
+  --primary: #9333ea; /* purple-600 */
+  --primary-foreground: #fafafa; /* neutral-50 */
+
+  --secondary: #f5f5f5; /* neutral-100 */
+  --secondary-foreground: #171717; /* neutral-900 */
+
+  --muted: #f5f5f5; /* neutral-100 */
+  --muted-foreground: #737373; /* neutral-500 */
+
+  --accent: #ecfccb; /* lime-100 */
+  --accent-foreground: #171717; /* neutral-900 */
+
+  --destructive: #dc2626; /* red-600 */
+  --destructive-foreground: #fef2f2; /* red-50 */
+
+  --border: #d9f99d; /* lime-200 */
+  --input: #e5e5e5; /* neutral-200 */
+  --ring: #a3a3a3; /* neutral-400 */
+
+  /* Chart colors - Light */
+  --chart-1: #ea580c; /* orange-600 */
+  --chart-2: #0d9488; /* teal-600 */
+  --chart-3: #164e63; /* cyan-900 */
+  --chart-4: #fbbf24; /* amber-400 */
+  --chart-5: #f59e0b; /* amber-500 */
+
+  /* Sidebar - Light */
+  --sidebar: #fafafa; /* neutral-50 */
+  --sidebar-foreground: #0a0a0a; /* neutral-950 */
+  --sidebar-primary: #171717; /* neutral-900 */
+  --sidebar-primary-foreground: #fafafa; /* neutral-50 */
+  --sidebar-accent: #f5f5f5; /* neutral-100 */
+  --sidebar-accent-foreground: #171717; /* neutral-900 */
+  --sidebar-border: #e5e5e5; /* neutral-200 */
+  --sidebar-ring: #a3a3a3; /* neutral-400 */
+}
+
+/* ===================================================================
+   Dark Mode Variables
+   =================================================================== */
+.dark {
+  --background: #1a2e05; /* lime-950 */
+  --foreground: #fafafa; /* neutral-50 */
+
+  --card: #171717; /* neutral-900 */
+  --card-foreground: #fafafa; /* neutral-50 */
+
+  --popover: #262626; /* neutral-800 */
+  --popover-foreground: #fafafa; /* neutral-50 */
+
+  --primary: #9333ea; /* purple-600 */
+  --primary-foreground: #fafafa; /* neutral-50 */
+
+  --secondary: #262626; /* neutral-800 */
+  --secondary-foreground: #fafafa; /* neutral-50 */
+
+  --muted: #262626; /* neutral-800 */
+  --muted-foreground: #a3a3a3; /* neutral-400 */
+
+  --accent: #3f3f46; /* lime-950 alternative */
+  --accent-foreground: #fafafa; /* neutral-50 */
+
+  --destructive: #f87171; /* red-400 */
+  --destructive-foreground: #fef2f2; /* red-50 */
+
+  --border: #4d7c0f; /* lime-800 */
+  --input: #ffffff; /* white with opacity */
+  --ring: #71717a; /* neutral-500 */
+
+  /* Chart colors - Dark */
+  --chart-1: #1d4ed8; /* blue-700 */
+  --chart-2: #10b981; /* emerald-500 */
+  --chart-3: #f59e0b; /* amber-500 */
+  --chart-4: #a855f7; /* purple-500 */
+  --chart-5: #fb7185; /* rose-500 */
+
+  /* Sidebar - Dark */
+  --sidebar: #171717; /* neutral-900 */
+  --sidebar-foreground: #fafafa; /* neutral-50 */
+  --sidebar-primary: #1d4ed8; /* blue-700 */
+  --sidebar-primary-foreground: #fafafa; /* neutral-50 */
+  --sidebar-accent: #262626; /* neutral-800 */
+  --sidebar-accent-foreground: #fafafa; /* neutral-50 */
+  --sidebar-border: #ffffff; /* white with opacity */
+  --sidebar-ring: #52525b; /* neutral-600 */
+}
