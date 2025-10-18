@@ -21,6 +21,7 @@ payroll-mcp/
 ### 🟢 Простые компоненты
 
 #### `StatsCards.tsx`
+
 - **Назначение**: Отображение 4 карточек со статистикой
 - **Сложность**: Низкая
 - **Состояние**: Без state, только props
@@ -33,6 +34,7 @@ payroll-mcp/
 ### 🟡 Средней сложности
 
 #### `VisitorsChart.tsx`
+
 - **Назначение**: График посещаемости
 - **Сложность**: Средняя
 - **Состояние**: Без state
@@ -46,6 +48,7 @@ payroll-mcp/
 ### 🔴 Сложные компоненты
 
 #### `PayrollTable.tsx`
+
 - **Назначение**: Таблица с данными по payroll секциям
 - **Сложность**: Высокая
 - **Состояние**:
@@ -61,6 +64,7 @@ payroll-mcp/
   - Actions menu
 
 #### `StartPayrollDialog.tsx`
+
 - **Назначение**: Модальное окно создания payroll
 - **Сложность**: Высокая
 - **Состояние**:
@@ -76,39 +80,39 @@ payroll-mcp/
 
 ## Данные (mockData.ts)
 
-### Экспортируемые данные:
+### Экспортируемые данные
 
 ```typescript
 // График посетителей
-chartData: Array<{name: string, value: number}>
-chartConfig: ChartConfig
+chartData: Array<{ name: string; value: number }>;
+chartConfig: ChartConfig;
 
 // Статистические карточки
 statsData: Array<{
-  title: string
-  value: string
-  badge: {icon: 'up' | 'down', text: string}
-  trend: string
-  description: string
-}>
+  title: string;
+  value: string;
+  badge: { icon: "up" | "down"; text: string };
+  trend: string;
+  description: string;
+}>;
 
 // Данные таблицы
 tableData: Array<{
-  header: string
-  type: string
-  status: 'done' | 'in-process'
-  target: string
-  limit: string
-  reviewer: string | null
-}>
+  header: string;
+  type: string;
+  status: "done" | "in-process";
+  target: string;
+  limit: string;
+  reviewer: string | null;
+}>;
 
 // TypeScript типы
-TableRowData: Type
+TableRowData: Type;
 ```
 
 ## Использование
 
-### Импорт компонентов:
+### Импорт компонентов
 
 ```typescript
 import {
@@ -119,7 +123,7 @@ import {
 } from "./payroll-mcp/components";
 ```
 
-### Использование в странице:
+### Использование в странице
 
 ```tsx
 export default function PayrollMcp() {
@@ -153,6 +157,7 @@ export default function PayrollMcp() {
 ## Зависимости
 
 Все компоненты используют:
+
 - shadcn/ui компоненты
 - lucide-react иконки
 - recharts для графиков
@@ -161,6 +166,7 @@ export default function PayrollMcp() {
 ## Дальнейшее развитие
 
 Возможные улучшения:
+
 1. Добавить React Hook Form для формы в StartPayrollDialog
 2. Добавить Zod схемы для валидации
 3. Заменить mock данные на API calls
