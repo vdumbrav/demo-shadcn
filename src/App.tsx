@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/demo-shadcn">
       <Routes>
         <Route path="/" element={<Demo />} />
         <Route path="/payroll-plugin" element={<PayrollPlugin />} />
