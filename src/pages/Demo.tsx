@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { DatePicker } from "@/components/ui/date-picker";
+import { DateRangePicker, type DateRange } from "@/components/ui/date-range-picker";
 import {
   Card,
   CardContent,
@@ -82,6 +85,8 @@ import { DataTable, columns, type Payment } from "@/components/data-table";
 
 function Demo() {
   const { theme, setTheme } = useTheme();
+  const [selectedDate, setSelectedDate] = useState<Date>();
+  const [dateRange, setDateRange] = useState<DateRange>();
 
   // Chart data
   const chartData = [
@@ -763,6 +768,86 @@ function Demo() {
                         </SelectContent>
                       </Select>
                     </div>
+                  </CardContent>
+                </Card>
+
+                {/* DatePicker */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Выбор даты (DatePicker)</CardTitle>
+                    <CardDescription>
+                      Календарь для выбора даты
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="date">Выберите дату:</Label>
+                      <DatePicker
+                        value={selectedDate}
+                        onChange={setSelectedDate}
+                        placeholder="Выберите дату"
+                      />
+                    </div>
+                    {selectedDate && (
+                      <div className="rounded-lg border p-3 bg-muted">
+                        <p className="text-sm">
+                          <span className="font-medium">Выбранная дата: </span>
+                          {selectedDate.toLocaleDateString('ru-RU', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                          })}
+                        </p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+
+                {/* DateRangePicker */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Выбор диапазона дат (DateRangePicker)</CardTitle>
+                    <CardDescription>
+                      Календарь для выбора периода с двумя месяцами
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="dateRange">Выберите период:</Label>
+                      <DateRangePicker
+                        value={dateRange}
+                        onChange={setDateRange}
+                        placeholder="Выберите диапазон дат"
+                      />
+                    </div>
+                    {dateRange?.from && (
+                      <div className="rounded-lg border p-3 bg-muted space-y-1">
+                        <p className="text-sm">
+                          <span className="font-medium">Начало: </span>
+                          {dateRange.from.toLocaleDateString('ru-RU', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                          })}
+                        </p>
+                        {dateRange.to && (
+                          <p className="text-sm">
+                            <span className="font-medium">Конец: </span>
+                            {dateRange.to.toLocaleDateString('ru-RU', {
+                              day: 'numeric',
+                              month: 'long',
+                              year: 'numeric'
+                            })}
+                          </p>
+                        )}
+                        {dateRange.from && dateRange.to && (
+                          <p className="text-sm pt-2 border-t mt-2">
+                            <span className="font-medium">Количество дней: </span>
+                            {Math.ceil((dateRange.to.getTime() - dateRange.from.getTime()) / (1000 * 60 * 60 * 24)) + 1}
+                          </p>
+                        )}
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </TabsContent>
