@@ -190,19 +190,21 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-0 py-4">
         <Input
           placeholder="Фильтр по email..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("email")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="w-full sm:max-w-sm"
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown className="ml-2 h-4 w-4" />
+            <Button variant="outline" className="sm:ml-auto w-full sm:w-auto">
+              <span className="hidden sm:inline">Columns</span>
+              <span className="sm:hidden">Показать колонки</span>
+              <ChevronDown className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -276,25 +278,31 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4">
+        <div className="flex-1 text-xs sm:text-sm text-muted-foreground text-center sm:text-left order-2 sm:order-1">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
-        <div className="space-x-2">
+        <div className="flex items-center gap-2 order-1 sm:order-2">
           <Button
             variant="outline"
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
+            className="h-8"
           >
-            Previous
+            <span className="hidden sm:inline">Previous</span>
+            <span className="sm:hidden">Prev</span>
           </Button>
+          <div className="text-xs sm:text-sm font-medium px-2">
+            {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+          </div>
           <Button
             variant="outline"
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
+            className="h-8"
           >
             Next
           </Button>

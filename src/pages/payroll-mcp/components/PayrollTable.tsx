@@ -268,30 +268,33 @@ export function PayrollTable() {
       {/* Filters and Actions */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 pb-4 sm:pb-6">
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full sm:w-auto">
-          <TabsList className="bg-muted p-1 rounded-lg overflow-x-auto flex-nowrap">
-            <TabsTrigger value="outline" className="px-2 py-1 rounded-md">
+          <TabsList className="grid w-full grid-cols-2 sm:inline-flex sm:w-auto bg-muted p-1 rounded-lg h-auto">
+            <TabsTrigger value="outline" className="px-2 py-1.5 sm:py-1 rounded-md text-xs sm:text-sm">
               Outline
             </TabsTrigger>
             <TabsTrigger
               value="past-performance"
-              className="px-2 py-1 rounded-md flex items-center gap-2"
+              className="px-2 py-1.5 sm:py-1 rounded-md flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
             >
-              Past Performance
-              <Badge variant="secondary">
+              <span className="hidden sm:inline">Past Performance</span>
+              <span className="sm:hidden">Past Perf.</span>
+              <Badge variant="secondary" className="text-[10px] sm:text-xs px-1 py-0">
                 {tableData.filter((r) => r.category === "past-performance").length}
               </Badge>
             </TabsTrigger>
             <TabsTrigger
               value="key-personnel"
-              className="px-2 py-1 rounded-md flex items-center gap-2"
+              className="px-2 py-1.5 sm:py-1 rounded-md flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
             >
-              Key Personnel
-              <Badge variant="secondary">
+              <span className="hidden sm:inline">Key Personnel</span>
+              <span className="sm:hidden">Personnel</span>
+              <Badge variant="secondary" className="text-[10px] sm:text-xs px-1 py-0">
                 {tableData.filter((r) => r.category === "key-personnel").length}
               </Badge>
             </TabsTrigger>
-            <TabsTrigger value="focus-documents" className="px-2 py-1 rounded-md">
-              Focus Documents
+            <TabsTrigger value="focus-documents" className="px-2 py-1.5 sm:py-1 rounded-md text-xs sm:text-sm">
+              <span className="hidden sm:inline">Focus Documents</span>
+              <span className="sm:hidden">Documents</span>
             </TabsTrigger>
           </TabsList>
         </Tabs>
@@ -559,32 +562,33 @@ export function PayrollTable() {
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-center pt-4">
-        <div className="flex items-center justify-between w-full">
-          <p className="text-sm text-muted-foreground">
-            {selectedCount} of {sortedData.length} row(s) selected.
-          </p>
-          <div className="flex items-center gap-8">
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium">Rows per page</span>
-              <Select value={String(rowsPerPage)} onValueChange={handleRowsPerPageChange}>
-                <SelectTrigger className="w-20">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="10">10</SelectItem>
-                  <SelectItem value="20">20</SelectItem>
-                  <SelectItem value="50">50</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <span className="text-sm font-medium">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
+        <p className="text-xs sm:text-sm text-muted-foreground order-2 sm:order-1">
+          {selectedCount} of {sortedData.length} row(s) selected.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 w-full sm:w-auto order-1 sm:order-2">
+          <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-start">
+            <span className="text-xs sm:text-sm font-medium whitespace-nowrap">Rows per page</span>
+            <Select value={String(rowsPerPage)} onValueChange={handleRowsPerPageChange}>
+              <SelectTrigger className="w-16 sm:w-20 h-8">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="10">10</SelectItem>
+                <SelectItem value="20">20</SelectItem>
+                <SelectItem value="50">50</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="text-xs sm:text-sm font-medium whitespace-nowrap">
               Page {currentPage} of {totalPages || 1}
             </span>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2">
               <Button
                 variant="outline"
                 size="icon"
+                className="h-8 w-8 hidden sm:flex"
                 disabled={currentPage === 1}
                 onClick={() => handlePageChange(1)}
               >
@@ -593,6 +597,7 @@ export function PayrollTable() {
               <Button
                 variant="outline"
                 size="icon"
+                className="h-8 w-8"
                 disabled={currentPage === 1}
                 onClick={() => handlePageChange(currentPage - 1)}
               >
@@ -601,6 +606,7 @@ export function PayrollTable() {
               <Button
                 variant="outline"
                 size="icon"
+                className="h-8 w-8"
                 disabled={currentPage === totalPages}
                 onClick={() => handlePageChange(currentPage + 1)}
               >
@@ -609,6 +615,7 @@ export function PayrollTable() {
               <Button
                 variant="outline"
                 size="icon"
+                className="h-8 w-8 hidden sm:flex"
                 disabled={currentPage === totalPages}
                 onClick={() => handlePageChange(totalPages)}
               >
