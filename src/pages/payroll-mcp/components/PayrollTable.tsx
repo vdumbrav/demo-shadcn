@@ -45,6 +45,7 @@ import {
   ArrowUpDown,
   ArrowUp,
   ArrowDown,
+  Download,
 } from 'lucide-react';
 import { tableData, type TableRowData, availableReviewers } from '../data/mockData';
 import { EditPaymentDialog } from './EditPaymentDialog';
@@ -71,7 +72,6 @@ import {
 import { exportToCSV, exportToJSON, exportToTSV, printAsPDF } from '../data/exportUtils';
 import { applyFilters, getDefaultFilters, type FilterOptions } from '../data/filterUtils';
 import { AdvancedFilterDialog } from './AdvancedFilterDialog';
-import { Download } from 'lucide-react';
 
 /**
  * PayrollTable Component
