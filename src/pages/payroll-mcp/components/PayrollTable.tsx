@@ -279,15 +279,16 @@ export function PayrollTable() {
   return (
     <div className="space-y-4 sm:space-y-6">
       {/* Filters and Actions */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 pb-4 sm:pb-6">
-        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full sm:w-auto">
-          <TabsList className="grid w-full grid-cols-2 sm:inline-flex sm:w-auto bg-muted p-1 rounded-lg h-auto">
+      <div className="space-y-3 pb-4 sm:pb-6">
+        {/* Row 1: Tabs - Full Width */}
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 bg-muted p-1 rounded-lg h-auto">
             <TabsTrigger value="outline" className="px-2 py-1.5 sm:py-1 rounded-md text-xs sm:text-sm">
               Outline
             </TabsTrigger>
             <TabsTrigger
               value="past-performance"
-              className="px-2 py-1.5 sm:py-1 rounded-md flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
+              className="px-2 py-1.5 sm:py-1 rounded-md flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm"
             >
               <span className="hidden sm:inline">Past Performance</span>
               <span className="sm:hidden">Past Perf.</span>
@@ -297,7 +298,7 @@ export function PayrollTable() {
             </TabsTrigger>
             <TabsTrigger
               value="key-personnel"
-              className="px-2 py-1.5 sm:py-1 rounded-md flex items-center gap-1 sm:gap-2 text-xs sm:text-sm"
+              className="px-2 py-1.5 sm:py-1 rounded-md flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm"
             >
               <span className="hidden sm:inline">Key Personnel</span>
               <span className="sm:hidden">Personnel</span>
@@ -311,22 +312,23 @@ export function PayrollTable() {
             </TabsTrigger>
           </TabsList>
         </Tabs>
-        <div className="flex items-center gap-2 w-full sm:w-auto flex-wrap sm:flex-nowrap">
+
+        {/* Row 2 & 3: Action Buttons - Responsive Grid */}
+        <div className="flex flex-col sm:flex-row gap-2 flex-wrap">
           {selectedCount > 0 && (
             <BatchDeleteDialog count={selectedCount} onDelete={handleBatchDelete}>
-              <Button variant="destructive" size="sm" className="flex items-center gap-2">
+              <Button variant="destructive" size="sm" className="flex items-center gap-2 w-full sm:w-auto">
                 <Trash2 className="w-4 h-4" />
-                Delete Selected ({selectedCount})
+                <span className="text-xs sm:text-sm">Delete ({selectedCount})</span>
               </Button>
             </BatchDeleteDialog>
           )}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="flex items-center gap-1 sm:gap-2">
+              <Button variant="outline" size="sm" className="flex items-center gap-1 sm:gap-2 w-full sm:w-auto">
                 <Columns2 className="w-4 h-4" />
-                <span className="hidden sm:inline">Customize Columns</span>
-                <span className="sm:hidden">Columns</span>
-                <ChevronDown className="w-4 h-4" />
+                <span className="text-xs sm:text-sm">Columns</span>
+                <ChevronDown className="w-3 h-3" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
@@ -366,10 +368,9 @@ export function PayrollTable() {
           </DropdownMenu>
           <Dialog open={isAddSectionOpen} onOpenChange={setIsAddSectionOpen}>
             <DialogTrigger asChild>
-              <Button variant="outline" size="sm" className="flex items-center gap-1 sm:gap-2">
+              <Button variant="outline" size="sm" className="flex items-center gap-1 sm:gap-2 w-full sm:w-auto">
                 <Plus className="w-4 h-4" />
-                <span className="hidden sm:inline">Add Section</span>
-                <span className="sm:hidden">Add</span>
+                <span className="text-xs sm:text-sm">Add Section</span>
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
@@ -411,16 +412,17 @@ export function PayrollTable() {
           </Dialog>
 
           {/* Advanced Filters */}
-          <AdvancedFilterDialog filters={advancedFilters} onFiltersChange={setAdvancedFilters} />
+          <div className="w-full sm:w-auto">
+            <AdvancedFilterDialog filters={advancedFilters} onFiltersChange={setAdvancedFilters} />
+          </div>
 
           {/* Export Menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="flex items-center gap-1 sm:gap-2">
+              <Button variant="outline" size="sm" className="flex items-center gap-1 sm:gap-2 w-full sm:w-auto">
                 <Download className="w-4 h-4" />
-                <span className="hidden sm:inline">Export</span>
-                <span className="sm:hidden">Export</span>
-                <ChevronDown className="w-4 h-4" />
+                <span className="text-xs sm:text-sm">Export</span>
+                <ChevronDown className="w-3 h-3" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">

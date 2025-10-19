@@ -48,10 +48,9 @@ export function AdvancedFilterDialog({ filters, onFiltersChange }: AdvancedFilte
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="flex items-center gap-1 sm:gap-2">
+        <Button variant="outline" size="sm" className="flex items-center gap-1 sm:gap-2 w-full sm:w-auto">
           <Filter className="w-4 h-4" />
-          <span className="hidden sm:inline">Advanced Filters</span>
-          <span className="sm:hidden">Filter</span>
+          <span className="text-xs sm:text-sm">Filters</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px]">
