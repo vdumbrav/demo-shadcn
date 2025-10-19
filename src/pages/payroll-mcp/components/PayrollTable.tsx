@@ -61,10 +61,15 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { handleDragStart, handleDragOver, handleDragLeave, handleDrop, handleDragEnd } from "../data/dragDropUtils";
+import { exportToCSV, exportToJSON, exportToTSV, printAsPDF } from "../data/exportUtils";
+import { applyFilters, getDefaultFilters, type FilterOptions } from "../data/filterUtils";
+import { AdvancedFilterDialog } from "./AdvancedFilterDialog";
+import { Download } from "lucide-react";
 
 /**
  * PayrollTable Component
- * Complex component with table, tabs, pagination, and row selection
+ * Complex component with table, tabs, pagination, row selection, and drag-and-drop reordering
  */
 export function PayrollTable() {
   const [activeTab, setActiveTab] = useState("outline");
@@ -82,9 +87,17 @@ export function PayrollTable() {
   const [isAddSectionOpen, setIsAddSectionOpen] = useState(false);
   const [newSectionName, setNewSectionName] = useState("");
   const [reviewerAssignments, setReviewerAssignments] = useState<Record<number, string>>({});
+  const [tableRows, setTableRows] = useState(tableData);
+  const [dragState, setDragState] = useState({
+    draggedItem: null as number | null,
+    dragOverItem: null as number | null,
+    isDragging: false,
+  });
+  const [advancedFilters, setAdvancedFilters] = useState<FilterOptions>(getDefaultFilters());
 
-  // Filter data by active tab
-  const filteredData = tableData.filter((row) => row.category === activeTab);
+  // Filter data by active tab and apply advanced filters
+  let filteredData = tableRows.filter((row) => row.category === activeTab);
+  filteredData = applyFilters(filteredData, advancedFilters);
 
   // Sort data
   const sortedData = React.useMemo(() => {
@@ -396,6 +409,38 @@ export function PayrollTable() {
               </DialogFooter>
             </DialogContent>
           </Dialog>
+
+          {/* Advanced Filters */}
+          <AdvancedFilterDialog filters={advancedFilters} onFiltersChange={setAdvancedFilters} />
+
+          {/* Export Menu */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="sm" className="flex items-center gap-1 sm:gap-2">
+                <Download className="w-4 h-4" />
+                <span className="hidden sm:inline">Export</span>
+                <span className="sm:hidden">Export</span>
+                <ChevronDown className="w-4 h-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuLabel>Export Format</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => exportToCSV(sortedData, `payroll_${new Date().getTime()}.csv`)}>
+                Export as CSV
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => exportToTSV(sortedData, `payroll_${new Date().getTime()}.tsv`)}>
+                Export as Excel (TSV)
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => exportToJSON(sortedData, `payroll_${new Date().getTime()}.json`)}>
+                Export as JSON
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => printAsPDF(sortedData, "Payroll Report")}>
+                Print as PDF
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 
@@ -500,11 +545,34 @@ export function PayrollTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {paginatedData.map((row: TableRowData, index: number) => (
-              <TableRow key={index}>
+            {paginatedData.map((row: TableRowData, index: number) => {
+              const actualIndex = tableRows.findIndex(r => r.id === row.id);
+              const isBeingDragged = dragState.draggedItem === actualIndex;
+              const isDragOver = dragState.dragOverItem === actualIndex;
+
+              return (
+              <TableRow
+                key={index}
+                draggable
+                onDragStart={() => handleDragStart(actualIndex, setDragState)}
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  handleDragOver(actualIndex, setDragState);
+                }}
+                onDragLeave={() => handleDragLeave(setDragState)}
+                onDrop={() => handleDrop(actualIndex, tableRows, dragState, setTableRows, setDragState)}
+                onDragEnd={() => handleDragEnd(setDragState)}
+                className={`cursor-move transition-colors ${
+                  isBeingDragged ? "opacity-50 bg-muted" : ""
+                } ${isDragOver && !isBeingDragged ? "bg-primary/10" : ""}`}
+              >
                 <TableCell>
-                  <Button variant="ghost" size="sm">
-                    <GripVertical className="w-4 h-4 text-muted-foreground" />
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onMouseDown={() => handleDragStart(actualIndex, setDragState)}
+                  >
+                    <GripVertical className={`w-4 h-4 ${isBeingDragged ? "text-primary" : "text-muted-foreground"}`} />
                   </Button>
                 </TableCell>
                 <TableCell>
@@ -556,7 +624,8 @@ export function PayrollTable() {
                   </DropdownMenu>
                 </TableCell>
               </TableRow>
-            ))}
+            );
+            })}
           </TableBody>
         </Table>
       </div>

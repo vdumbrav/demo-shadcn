@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -16,28 +18,63 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import { DatePicker } from "@/components/ui/date-picker";
 import { DateRangePicker, type DateRange } from "@/components/ui/date-range-picker";
+import { startPayrollSchema, type StartPayrollFormData } from "../data/validationSchemas";
 
 interface StartPayrollDialogProps {
   children?: React.ReactNode;
+  onSubmit?: (data: StartPayrollFormData) => void;
 }
 
 /**
  * StartPayrollDialog Component
  * Complex component with form state management
  * Handles payroll creation with multiple form fields
+ * Includes React Hook Form + Zod validation
  */
-export function StartPayrollDialog({ children }: StartPayrollDialogProps) {
+export function StartPayrollDialog({ children, onSubmit }: StartPayrollDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [payrollType, setPayrollType] = useState("new");
-  const [addRecurring, setAddRecurring] = useState(false);
   const [periodRange, setPeriodRange] = useState<DateRange>();
   const [paymentDate, setPaymentDate] = useState<Date>();
 
-  const handleSubmit = () => {
-    // Handle form submission logic here
-    console.log("Payroll Type:", payrollType);
-    console.log("Add Recurring:", addRecurring);
-    setIsOpen(false);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<StartPayrollFormData>({
+    resolver: zodResolver(startPayrollSchema),
+    defaultValues: {
+      payrollType: "new",
+      addRecurring: false,
+      payrollName: "November '25 (corp)",
+    },
+  });
+
+  const payrollType = watch("payrollType");
+
+  const onSubmitForm = async (data: StartPayrollFormData) => {
+    try {
+      // Validate dates are set
+      if (!periodRange?.from || !periodRange?.to || !paymentDate) {
+        alert("Please select both period dates and payment date");
+        return;
+      }
+
+      // Add date range and payment date to data
+      const fullData: StartPayrollFormData = {
+        ...data,
+        periodStart: periodRange.from,
+        periodEnd: periodRange.to,
+        paymentDate,
+      };
+
+      onSubmit?.(fullData);
+      setIsOpen(false);
+      reset();
+    } catch (error) {
+      console.error("Form submission error:", error);
+    }
   };
 
   return (
@@ -53,32 +90,37 @@ export function StartPayrollDialog({ children }: StartPayrollDialogProps) {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-6 py-4">
+        <form onSubmit={handleSubmit(onSubmitForm)} className="space-y-6 py-4">
           {/* Radio Group - Payroll Type Selection (Horizontal) */}
-          <RadioGroup value={payrollType} onValueChange={setPayrollType} className="grid grid-cols-2 gap-4">
-            <div className="flex items-start space-x-3 space-y-0 rounded-md border p-4">
-              <RadioGroupItem value="new" id="new" />
-              <div className="space-y-1 leading-none flex-1">
-                <Label htmlFor="new" className="font-medium">
-                  Start new payroll
-                </Label>
-                <p className="text-sm text-muted-foreground">
-                  Create a blank draft with no employees.
-                </p>
+          <div>
+            <RadioGroup value={payrollType} className="grid grid-cols-2 gap-4">
+              <div className="flex items-start space-x-3 space-y-0 rounded-md border p-4">
+                <RadioGroupItem value="new" id="new" {...register("payrollType")} />
+                <div className="space-y-1 leading-none flex-1">
+                  <Label htmlFor="new" className="font-medium">
+                    Start new payroll
+                  </Label>
+                  <p className="text-sm text-muted-foreground">
+                    Create a blank draft with no employees.
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="flex items-start space-x-3 space-y-0 rounded-md border p-4">
-              <RadioGroupItem value="repeat" id="repeat" />
-              <div className="space-y-1 leading-none flex-1">
-                <Label htmlFor="repeat" className="font-medium">
-                  Repeat last payroll
-                </Label>
-                <p className="text-sm text-muted-foreground">
-                  Copy employees, amounts, and network settings from last cycle.
-                </p>
+              <div className="flex items-start space-x-3 space-y-0 rounded-md border p-4">
+                <RadioGroupItem value="repeat" id="repeat" {...register("payrollType")} />
+                <div className="space-y-1 leading-none flex-1">
+                  <Label htmlFor="repeat" className="font-medium">
+                    Repeat last payroll
+                  </Label>
+                  <p className="text-sm text-muted-foreground">
+                    Copy employees, amounts, and network settings from last cycle.
+                  </p>
+                </div>
               </div>
-            </div>
-          </RadioGroup>
+            </RadioGroup>
+            {errors.payrollType && (
+              <p className="text-sm text-red-500 mt-2">{errors.payrollType.message}</p>
+            )}
+          </div>
 
           {/* Payroll Name Input */}
           <div className="space-y-2">
@@ -86,8 +128,12 @@ export function StartPayrollDialog({ children }: StartPayrollDialogProps) {
             <Input
               id="payroll-name"
               placeholder="November '25 (corp)"
-              defaultValue="November '25 (corp)"
+              {...register("payrollName")}
+              className={errors.payrollName ? "border-red-500" : ""}
             />
+            {errors.payrollName && (
+              <p className="text-sm text-red-500">{errors.payrollName.message}</p>
+            )}
           </div>
 
           {/* Period and Payment Date */}
@@ -100,6 +146,9 @@ export function StartPayrollDialog({ children }: StartPayrollDialogProps) {
                 placeholder="Select period"
                 className="w-full"
               />
+              {!periodRange && (
+                <p className="text-sm text-red-500">Please select a period</p>
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="payment-date">Payment date</Label>
@@ -109,6 +158,9 @@ export function StartPayrollDialog({ children }: StartPayrollDialogProps) {
                 placeholder="Select payment date"
                 className="w-full"
               />
+              {!paymentDate && (
+                <p className="text-sm text-red-500">Please select a payment date</p>
+              )}
             </div>
           </div>
 
@@ -118,23 +170,22 @@ export function StartPayrollDialog({ children }: StartPayrollDialogProps) {
           <div className="flex items-center space-x-2">
             <Checkbox
               id="add-recurring"
-              checked={addRecurring}
-              onCheckedChange={(checked) => setAddRecurring(checked as boolean)}
+              {...register("addRecurring")}
             />
             <Label htmlFor="add-recurring" className="text-sm font-normal">
               Add Recurring
             </Label>
           </div>
-        </div>
 
-        <DialogFooter>
-          <Button type="button" variant="outline" onClick={() => setIsOpen(false)}>
-            Cancel
-          </Button>
-          <Button type="submit" onClick={handleSubmit}>
-            Start payroll
-          </Button>
-        </DialogFooter>
+          <DialogFooter>
+            <Button type="button" variant="outline" onClick={() => setIsOpen(false)}>
+              Cancel
+            </Button>
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Starting..." : "Start payroll"}
+            </Button>
+          </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );
