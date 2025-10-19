@@ -1,4 +1,4 @@
-// Function to generate chart data with realistic random fluctuations
+// Function to generate chart data with sharp transitions
 const generateChartData = (
   count: number,
   baseValue: number,
@@ -8,23 +8,26 @@ const generateChartData = (
 ) => {
   const data = [];
   let currentValue = baseValue;
-  let momentum = 0;
 
   for (let i = 0; i < count; i++) {
-    // Add small overall trend
-    currentValue += trend * 0.5;
+    // Add sharp trend changes
+    currentValue += trend * (Math.random() > 0.5 ? 1 : -0.3);
 
-    // Add momentum (creates waves/peaks and valleys)
-    momentum += (Math.random() - 0.5) * 3;
-    momentum *= 0.9; // Dampen momentum over time
-    currentValue += momentum;
+    // Add sudden spikes and drops for abrupt transitions
+    if (Math.random() > 0.85) {
+      // Sudden spike or drop (15% chance)
+      currentValue += (Math.random() - 0.5) * variance * 1.5;
+    } else {
+      // Regular variance with sharper swings
+      const randomVariance = (Math.random() - 0.5) * variance * 1.2;
+      currentValue += randomVariance;
+    }
 
-    // Add random variance for natural fluctuations
-    const randomVariance = (Math.random() - 0.5) * variance;
-    const value = Math.max(0, Math.round(currentValue + randomVariance));
+    // Reduced smoothing - sharper value changes
+    const value = Math.max(0, Math.round(currentValue));
 
-    // Keep value within reasonable bounds
-    currentValue = Math.max(baseValue * 0.5, Math.min(baseValue * 2, currentValue));
+    // Wider bounds for more dramatic swings
+    currentValue = Math.max(baseValue * 0.3, Math.min(baseValue * 2.5, currentValue));
 
     data.push({
       name: getLabelFn(i),
