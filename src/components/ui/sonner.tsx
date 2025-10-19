@@ -3,10 +3,11 @@ import { useTheme } from '@/context/theme-context';
 
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme } = useTheme();
+  const effectiveTheme: ToasterProps['theme'] = theme ?? 'system';
 
   return (
     <Sonner
-      theme={theme as ToasterProps['theme']}
+      theme={effectiveTheme}
       className="toaster group [&_div[data-content]]:w-full"
       toastOptions={{
         classNames: {

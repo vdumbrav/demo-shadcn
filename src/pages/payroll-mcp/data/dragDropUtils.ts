@@ -51,6 +51,11 @@ export const handleDrop = (
   const newData = [...data];
   const draggedItem = newData[dragState.draggedItem];
 
+  if (!draggedItem) {
+    setState({ draggedItem: null, dragOverItem: null, isDragging: false });
+    return;
+  }
+
   // Remove dragged item
   newData.splice(dragState.draggedItem, 1);
 

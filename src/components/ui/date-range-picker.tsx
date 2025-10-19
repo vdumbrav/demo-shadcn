@@ -12,7 +12,7 @@ export type DateRange = {
 };
 
 interface DateRangePickerProps {
-  value?: DateRange;
+  value?: DateRange | undefined;
   onChange?: (dateRange: DateRange | undefined) => void;
   placeholder?: string;
   disabled?: boolean;

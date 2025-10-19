@@ -113,8 +113,8 @@ export function PayrollTable() {
       const aValue = a[sortColumn];
       const bValue = b[sortColumn];
 
-      if (aValue === null) return 1;
-      if (bValue === null) return -1;
+      if (aValue === null || aValue === undefined) return 1;
+      if (bValue === null || bValue === undefined) return -1;
 
       if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
       if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
@@ -204,7 +204,7 @@ export function PayrollTable() {
     }
   };
 
-  const renderStatusBadge = (status: string) => {
+  const renderStatusBadge = (status: string | undefined) => {
     return (
       <Badge variant="outline" className="flex w-fit items-center gap-1">
         {status === 'done' ? (
@@ -608,7 +608,7 @@ export function PayrollTable() {
                   </TableCell>
                   <TableCell>
                     <Checkbox
-                      checked={checkedItems[index]}
+                      checked={checkedItems[index] ?? false}
                       onCheckedChange={(checked) => handleCheckboxChange(index, checked as boolean)}
                     />
                   </TableCell>

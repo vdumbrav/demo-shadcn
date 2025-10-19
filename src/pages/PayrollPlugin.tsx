@@ -560,7 +560,7 @@ export default function PayrollPlugin() {
                             </TableCell>
                             <TableCell>
                               <Checkbox
-                                checked={checkedItems[index]}
+                                checked={checkedItems[index] ?? false}
                                 onCheckedChange={(checked) =>
                                   handleCheckboxChange(index, checked as boolean)
                                 }

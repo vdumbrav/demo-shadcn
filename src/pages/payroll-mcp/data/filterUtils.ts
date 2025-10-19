@@ -31,7 +31,7 @@ export const applyFilters = (data: TableRowData[], filters: FilterOptions): Tabl
     }
 
     // Type filter
-    if (filters.typeFilter.length > 0 && !filters.typeFilter.includes(row.type)) {
+    if (filters.typeFilter.length > 0 && (!row.type || !filters.typeFilter.includes(row.type))) {
       return false;
     }
 
@@ -58,7 +58,9 @@ export const applyFilters = (data: TableRowData[], filters: FilterOptions): Tabl
  */
 export const getFilterOptions = (data: TableRowData[]) => {
   return {
-    types: [...new Set(data.map((row) => row.type))],
+    types: [
+      ...new Set(data.map((row) => row.type).filter((type): type is string => type !== undefined)),
+    ],
     statuses: ['done', 'in-process'],
   };
 };
