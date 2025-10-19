@@ -31,7 +31,7 @@ const generateChartData = (
 
     data.push({
       name: getLabelFn(i),
-      value: value,
+      value,
     });
   }
 

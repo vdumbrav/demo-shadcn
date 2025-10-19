@@ -17,7 +17,7 @@ export const exportToCSV = (data: TableRowData[], filename = 'payroll_data.csv')
   const headers = ['ID', 'Header', 'Type', 'Status', 'Target', 'Limit', 'Reviewer', 'Category'];
 
   // Create CSV content
-  let csvContent = headers.join(',') + '\n';
+  let csvContent = `${headers.join(',')  }\n`;
 
   // Add data rows
   data.forEach((row) => {
@@ -31,7 +31,7 @@ export const exportToCSV = (data: TableRowData[], filename = 'payroll_data.csv')
       row.reviewer || 'Unassigned',
       row.category,
     ];
-    csvContent += values.join(',') + '\n';
+    csvContent += `${values.join(',')  }\n`;
   });
 
   // Create blob and download
@@ -84,7 +84,7 @@ export const exportToTSV = (data: TableRowData[], filename = 'payroll_data.tsv')
   const headers = ['ID', 'Header', 'Type', 'Status', 'Target', 'Limit', 'Reviewer', 'Category'];
 
   // Create TSV content
-  let tsvContent = headers.join('\t') + '\n';
+  let tsvContent = `${headers.join('\t')  }\n`;
 
   // Add data rows
   data.forEach((row) => {
@@ -98,7 +98,7 @@ export const exportToTSV = (data: TableRowData[], filename = 'payroll_data.tsv')
       row.reviewer || 'Unassigned',
       row.category,
     ];
-    tsvContent += values.join('\t') + '\n';
+    tsvContent += `${values.join('\t')  }\n`;
   });
 
   // Create blob and download
