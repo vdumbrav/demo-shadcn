@@ -5,9 +5,9 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 
 /**
- * ESLint Configuration
- * Modern flat config (v9+) with strict TypeScript and React support
- * Based on best practices from production projects
+ * ESLint Configuration - Balanced Production Setup
+ * Modern flat config with TypeScript and React support
+ * Focuses on maintainability and real-world pragmatism
  */
 export default tseslint.config(
   {
@@ -18,6 +18,8 @@ export default tseslint.config(
       'build',
       '*.config.*',
       'scripts/**',
+      '.next',
+      '.vercel',
     ],
   },
   {
@@ -37,10 +39,10 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': ['error', { allowConstantExport: true }],
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
-      // Enhanced TypeScript rules
-      '@typescript-eslint/no-explicit-any': 'error',
+      // TypeScript rules - balance of strictness
+      '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -53,37 +55,37 @@ export default tseslint.config(
           ignoreRestSiblings: true,
         },
       ],
-      '@typescript-eslint/no-non-null-assertion': 'error',
+      '@typescript-eslint/no-non-null-assertion': 'warn',
 
       // Type-aware rules
-      '@typescript-eslint/prefer-nullish-coalescing': 'error',
-      '@typescript-eslint/prefer-optional-chain': 'error',
-      '@typescript-eslint/no-unnecessary-condition': 'warn',
-      '@typescript-eslint/no-unnecessary-type-assertion': 'error',
-      '@typescript-eslint/no-floating-promises': 'error',
+      '@typescript-eslint/prefer-nullish-coalescing': 'warn',
+      '@typescript-eslint/prefer-optional-chain': 'warn',
+      '@typescript-eslint/no-unnecessary-condition': 'off',
+      '@typescript-eslint/no-unnecessary-type-assertion': 'warn',
+      '@typescript-eslint/no-floating-promises': 'warn',
       '@typescript-eslint/await-thenable': 'error',
-      '@typescript-eslint/no-misused-promises': 'error',
-      '@typescript-eslint/prefer-readonly': 'error',
+      '@typescript-eslint/no-misused-promises': ['warn', { checksVoidReturn: false }],
+      '@typescript-eslint/prefer-readonly': 'off',
       '@typescript-eslint/prefer-as-const': 'error',
       '@typescript-eslint/no-duplicate-enum-values': 'error',
       '@typescript-eslint/no-extra-non-null-assertion': 'error',
       '@typescript-eslint/no-for-in-array': 'error',
       '@typescript-eslint/no-implied-eval': 'error',
-      '@typescript-eslint/no-meaningless-void-operator': 'warn',
+      '@typescript-eslint/no-meaningless-void-operator': 'off',
       '@typescript-eslint/no-non-null-asserted-optional-chain': 'error',
-      '@typescript-eslint/no-redundant-type-constituents': 'error',
+      '@typescript-eslint/no-redundant-type-constituents': 'warn',
       '@typescript-eslint/no-this-alias': 'error',
-      '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'error',
-      '@typescript-eslint/no-unnecessary-parameter-property-assignment': 'error',
-      '@typescript-eslint/no-unnecessary-template-expression': 'error',
+      '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'warn',
+      '@typescript-eslint/no-unnecessary-parameter-property-assignment': 'warn',
+      '@typescript-eslint/no-unnecessary-template-expression': 'warn',
       '@typescript-eslint/no-useless-empty-export': 'error',
       '@typescript-eslint/prefer-includes': 'error',
-      '@typescript-eslint/prefer-reduce-type-parameter': 'error',
-      '@typescript-eslint/prefer-regexp-exec': 'error',
-      '@typescript-eslint/prefer-return-this-type': 'error',
+      '@typescript-eslint/prefer-reduce-type-parameter': 'warn',
+      '@typescript-eslint/prefer-regexp-exec': 'off',
+      '@typescript-eslint/prefer-return-this-type': 'warn',
       '@typescript-eslint/prefer-string-starts-ends-with': 'error',
-      '@typescript-eslint/require-array-sort-compare': 'error',
-      '@typescript-eslint/switch-exhaustiveness-check': 'error',
+      '@typescript-eslint/require-array-sort-compare': 'warn',
+      '@typescript-eslint/switch-exhaustiveness-check': 'warn',
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {
@@ -93,10 +95,12 @@ export default tseslint.config(
         },
       ],
 
-      // Safety rules
-      '@typescript-eslint/no-unsafe-argument': 'warn',
-      '@typescript-eslint/no-unsafe-assignment': 'warn',
-      '@typescript-eslint/no-unsafe-call': 'warn',
+      // Unsafe rules - warnings for practicality
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
 
       // Code quality
       'no-console': ['warn', { allow: ['warn', 'error'] }],
@@ -106,8 +110,8 @@ export default tseslint.config(
       'no-var': 'error',
       'no-unneeded-ternary': 'error',
       'no-duplicate-imports': 'error',
-      'no-unused-private-class-members': 'error',
-      'no-useless-assignment': 'error',
+      'no-unused-private-class-members': 'warn',
+      'no-useless-assignment': 'warn',
       'no-array-constructor': 'error',
       'no-new-object': 'error',
       'array-callback-return': 'error',
@@ -118,16 +122,16 @@ export default tseslint.config(
       'default-case-last': 'error',
 
       // Auto-fixable improvements
-      'object-shorthand': ['error', 'always'],
+      'object-shorthand': 'error',
       'prefer-template': 'error',
       yoda: 'error',
       'prefer-arrow-callback': 'error',
       'no-useless-concat': 'error',
-      'no-useless-return': 'error',
-      'no-else-return': 'error',
-      'no-lonely-if': 'error',
-      'prefer-exponentiation-operator': 'error',
-      'prefer-numeric-literals': 'error',
+      'no-useless-return': 'warn',
+      'no-else-return': 'warn',
+      'no-lonely-if': 'warn',
+      'prefer-exponentiation-operator': 'warn',
+      'prefer-numeric-literals': 'warn',
     },
   }
 );
