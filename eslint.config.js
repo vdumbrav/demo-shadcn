@@ -41,8 +41,8 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
-      // TypeScript rules - balance of strictness
-      '@typescript-eslint/no-explicit-any': 'warn',
+      // TypeScript rules - strict
+      '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -58,13 +58,13 @@ export default tseslint.config(
       '@typescript-eslint/no-non-null-assertion': 'warn',
 
       // Type-aware rules
-      '@typescript-eslint/prefer-nullish-coalescing': 'warn',
-      '@typescript-eslint/prefer-optional-chain': 'warn',
-      '@typescript-eslint/no-unnecessary-condition': 'off',
-      '@typescript-eslint/no-unnecessary-type-assertion': 'warn',
-      '@typescript-eslint/no-floating-promises': 'warn',
+      '@typescript-eslint/prefer-nullish-coalescing': 'error',
+      '@typescript-eslint/prefer-optional-chain': 'error',
+      '@typescript-eslint/no-unnecessary-condition': 'warn',
+      '@typescript-eslint/no-unnecessary-type-assertion': 'error',
+      '@typescript-eslint/no-floating-promises': 'error',
       '@typescript-eslint/await-thenable': 'error',
-      '@typescript-eslint/no-misused-promises': ['warn', { checksVoidReturn: false }],
+      '@typescript-eslint/no-misused-promises': 'error',
       '@typescript-eslint/prefer-readonly': 'off',
       '@typescript-eslint/prefer-as-const': 'error',
       '@typescript-eslint/no-duplicate-enum-values': 'error',

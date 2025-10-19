@@ -31,12 +31,16 @@
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
+    "strictPropertyInitialization": true,
     "noImplicitReturns": true,
     "useUnknownInCatchVariables": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitOverride": true,
     "allowUnusedLabels": false,
     "allowUnreachableCode": false,
+    "exactOptionalPropertyTypes": true,
+    "noUncheckedIndexedAccess": true,
+    "noPropertyAccessFromIndexSignature": true,
 
     /* Path alias */
     "baseUrl": ".",
