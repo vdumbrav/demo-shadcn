@@ -10,7 +10,16 @@ import tseslint from 'typescript-eslint';
  * Based on best practices from production projects
  */
 export default tseslint.config(
-  { ignores: ['dist', 'node_modules', 'coverage', 'build', '*.config.*'] },
+  {
+    ignores: [
+      'dist',
+      'node_modules',
+      'coverage',
+      'build',
+      '*.config.*',
+      'scripts/**',
+    ],
+  },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['src/**/*.{ts,tsx}'],
