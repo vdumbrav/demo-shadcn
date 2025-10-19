@@ -1,75 +1,163 @@
-# React + TypeScript + Vite
+# Demo ShadCN - React Component Showcase
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React + TypeScript + Vite application showcasing component patterns, form handling, and advanced data management features built with shadcn/ui and Tailwind CSS.
 
-Currently, two official plugins are available:
+## 🎯 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Core Technologies
 
-## React Compiler
+- **React 19** - Latest React with server components support
+- **TypeScript** - Type-safe development
+- **Vite 7** - Ultra-fast build tool with HMR
+- **Tailwind CSS v4** - Utility-first CSS framework
+- **shadcn/ui** - High-quality, accessible UI components
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### Development Experience
 
-Note: This will impact Vite dev & build performances.
+- **ESLint** - Modern ESLint v9 flat config with TypeScript support
+- **Prettier** - Code formatting with Tailwind CSS class sorting
+- **Stylelint** - CSS/SCSS linting with alphabetical property ordering
+- **TypeScript** - Strict type checking
 
-## Expanding the ESLint configuration
+### Demo Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The application includes a **Payroll MCP** demo showcasing advanced patterns:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+#### Form Handling
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- React Hook Form with Zod validation
+- Complex form dialogs for data entry
+- Real-time validation with error feedback
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+#### Data Management
+
+- Advanced filtering with multiple criteria
+- Sortable columns and pagination
+- Responsive table layout (mobile-first)
+
+#### Drag & Drop
+
+- Reorderable rows with visual feedback
+- Smooth drag state management
+- Touch-friendly interactions
+
+#### Export Functionality
+
+- CSV, JSON, TSV export formats
+- PDF printing support
+- Batch operations
+
+#### UI Components
+
+- Mobile-responsive ToggleGroup with icon-only buttons
+- Statistics cards with data visualization
+- Advanced filter dialogs
+
+## 📦 Scripts
+
+```bash
+# Development
+npm run dev              # Start dev server with HMR
+npm run build           # Build for production
+npm run preview         # Preview production build
+
+# Code Quality
+npm run lint            # Run ESLint
+npm run lint:fix        # Fix ESLint issues
+npm run format          # Format code with Prettier
+npm run format:check    # Check formatting
+npm run lint:styles     # Check CSS/SCSS with Stylelint
+npm run lint:styles:fix # Fix CSS/SCSS issues
+
+# Deployment
+npm run deploy          # Build and deploy to GitHub Pages
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🏗️ Project Structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
 ```
+demo-shadcn/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml              # GitHub Actions deployment
+├── src/
+│   ├── components/                 # UI components (shadcn/ui)
+│   ├── context/                    # React Context
+│   ├── hooks/                      # Custom React hooks
+│   ├── lib/                        # Utilities and helpers
+│   ├── pages/
+│   │   ├── payroll-mcp/           # Payroll demo page
+│   │   │   ├── components/        # Feature-specific components
+│   │   │   └── data/              # Utilities, schemas, mock data
+│   │   └── ...
+│   ├── styles/                     # Global styles
+│   └── main.tsx
+├── eslint.config.js               # ESLint configuration
+├── .prettierrc.json               # Prettier configuration
+├── .stylelintrc.json              # Stylelint configuration
+├── vite.config.ts                 # Vite configuration
+├── tailwind.config.ts             # Tailwind configuration
+└── tsconfig.json                  # TypeScript configuration
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js >= 22
+- npm or yarn
+
+### Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### Build & Preview
+
+```bash
+# Build for production
+npm run build
+
+# Preview production build locally
+npm run preview
+```
+
+## 🎨 Styling & Code Quality
+
+### Prettier + Tailwind CSS Plugin
+
+All Tailwind CSS classes are automatically sorted by the `prettier-plugin-tailwindcss` for consistent styling across the project.
+
+### ESLint Configuration
+
+Modern ESLint v9 with flat config format, including:
+
+- React rules and React Hooks validation
+- TypeScript support
+- Unused variable detection
+- Best practice enforcement
+
+### Stylelint
+
+SCSS/CSS linting with:
+
+- Standard CSS rules
+- Prettier integration
+- Alphabetical property ordering
+- Custom property validation
+
+## 📱 Responsive Design
+
+All components are built with mobile-first approach using Tailwind CSS breakpoints:
+
+- `sm`: Small devices (640px)
+- `md`: Medium devices (768px)
+- `lg`: Large devices (1024px)
+- `xl`: Extra-large devices (1280px)
