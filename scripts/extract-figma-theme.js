@@ -4,14 +4,11 @@ const FIGMA_TOKEN = fs.readFileSync('.figma-token', 'utf-8').trim();
 const FILE_KEY = 'z9nNfdgCnPgPnThMsAKI0C'; // C-Pay Design System
 
 async function fetchFigmaStyles() {
-  const response = await fetch(
-    `https://api.figma.com/v1/files/${FILE_KEY}/styles`,
-    {
-      headers: {
-        'X-Figma-Token': FIGMA_TOKEN,
-      },
-    }
-  );
+  const response = await fetch(`https://api.figma.com/v1/files/${FILE_KEY}/styles`, {
+    headers: {
+      'X-Figma-Token': FIGMA_TOKEN,
+    },
+  });
 
   if (!response.ok) {
     throw new Error(`Figma API error: ${response.status} ${response.statusText}`);
@@ -21,14 +18,11 @@ async function fetchFigmaStyles() {
 }
 
 async function fetchFigmaFile() {
-  const response = await fetch(
-    `https://api.figma.com/v1/files/${FILE_KEY}`,
-    {
-      headers: {
-        'X-Figma-Token': FIGMA_TOKEN,
-      },
-    }
-  );
+  const response = await fetch(`https://api.figma.com/v1/files/${FILE_KEY}`, {
+    headers: {
+      'X-Figma-Token': FIGMA_TOKEN,
+    },
+  });
 
   if (!response.ok) {
     throw new Error(`Figma API error: ${response.status} ${response.statusText}`);
@@ -61,15 +55,9 @@ async function extractTheme() {
   console.log('\n🎨 Found styles:', stylesData.meta?.styles?.length || 0);
 
   // Сохраняем сырые данные для анализа
-  fs.writeFileSync(
-    'figma-styles.json',
-    JSON.stringify(stylesData, null, 2)
-  );
+  fs.writeFileSync('figma-styles.json', JSON.stringify(stylesData, null, 2));
 
-  fs.writeFileSync(
-    'figma-file.json',
-    JSON.stringify(fileData, null, 2)
-  );
+  fs.writeFileSync('figma-file.json', JSON.stringify(fileData, null, 2));
 
   console.log('\n✅ Данные сохранены в:');
   console.log('  - figma-styles.json');

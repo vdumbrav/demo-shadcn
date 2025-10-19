@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   AlertDialog,
   AlertDialogContent,
@@ -8,7 +8,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+} from '@/components/ui/alert-dialog';
 
 interface DeletePaymentDialogProps {
   children?: React.ReactNode;
@@ -19,10 +19,7 @@ interface DeletePaymentDialogProps {
  * DeletePaymentDialog Component
  * Alert dialog for confirming deletion of a single payment
  */
-export function DeletePaymentDialog({
-  children,
-  onDelete,
-}: DeletePaymentDialogProps) {
+export function DeletePaymentDialog({ children, onDelete }: DeletePaymentDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleDelete = () => {

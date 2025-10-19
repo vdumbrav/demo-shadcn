@@ -1,10 +1,10 @@
-import * as React from "react";
-import { format } from "date-fns";
-import { Calendar as CalendarIcon, X } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import * as React from 'react';
+import { format } from 'date-fns';
+import { Calendar as CalendarIcon, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Calendar } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 export type DateRange = {
   from: Date | undefined;
@@ -22,7 +22,7 @@ interface DateRangePickerProps {
 export function DateRangePicker({
   value,
   onChange,
-  placeholder = "Pick a date range",
+  placeholder = 'Pick a date range',
   disabled,
   className,
 }: DateRangePickerProps) {
@@ -45,9 +45,9 @@ export function DateRangePicker({
         <Button
           variant="outline"
           className={cn(
-            "min-w-[240px] justify-start text-left font-normal",
-            !value?.from && "text-muted-foreground",
-            value?.from && "pr-8",
+            'min-w-[240px] justify-start text-left font-normal',
+            !value?.from && 'text-muted-foreground',
+            value?.from && 'pr-8',
             className
           )}
           disabled={disabled}
@@ -56,10 +56,10 @@ export function DateRangePicker({
           {value?.from ? (
             value.to ? (
               <>
-                {format(value.from, "dd/MM/yyyy")} - {format(value.to, "dd/MM/yyyy")}
+                {format(value.from, 'dd/MM/yyyy')} - {format(value.to, 'dd/MM/yyyy')}
               </>
             ) : (
-              format(value.from, "dd/MM/yyyy")
+              format(value.from, 'dd/MM/yyyy')
             )
           ) : (
             <span>{placeholder}</span>

@@ -1,20 +1,20 @@
-import { useTheme } from "@/context/theme-context";
-import { Button } from "@/components/ui/button";
+import { useTheme } from '@/context/theme-context';
+import { Button } from '@/components/ui/button';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+} from '@/components/ui/select';
+import { Separator } from '@/components/ui/separator';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
+} from '@/components/ui/breadcrumb';
 
 // Import modular components
 import {
@@ -23,7 +23,7 @@ import {
   PayrollTable,
   StartPayrollDialog,
   PayrollSidebar,
-} from "./payroll-mcp/components";
+} from './payroll-mcp/components';
 
 /**
  * PayrollMcp Page
@@ -45,30 +45,28 @@ export default function PayrollMcp() {
         <PayrollSidebar />
 
         {/* Main Content Area */}
-        <div className="flex-1 p-1 sm:p-2 overflow-hidden">
-          <div className="bg-background rounded-lg sm:rounded-xl shadow-lg h-full flex flex-col">
+        <div className="flex-1 overflow-hidden p-1 sm:p-2">
+          <div className="bg-background flex h-full flex-col rounded-lg shadow-lg sm:rounded-xl">
             {/* Page Header */}
-            <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 px-3 sm:px-4 lg:px-6 py-2 sm:py-0 sm:h-12 border-b border-border">
-              <div className="flex items-center gap-2 w-full sm:w-auto">
-                <SidebarTrigger className="w-7 h-7 rounded-md" />
-                <Separator orientation="vertical" className="h-4 hidden sm:block" />
+            <header className="border-border flex flex-col items-start justify-between gap-2 border-b px-3 py-2 sm:h-12 sm:flex-row sm:items-center sm:gap-0 sm:px-4 sm:py-0 lg:px-6">
+              <div className="flex w-full items-center gap-2 sm:w-auto">
+                <SidebarTrigger className="h-7 w-7 rounded-md" />
+                <Separator orientation="vertical" className="hidden h-4 sm:block" />
                 <Breadcrumb>
                   <BreadcrumbList>
                     <BreadcrumbItem>
-                      <BreadcrumbPage className="text-sm text-foreground">
-                        Payroll
-                      </BreadcrumbPage>
+                      <BreadcrumbPage className="text-foreground text-sm">Payroll</BreadcrumbPage>
                     </BreadcrumbItem>
                   </BreadcrumbList>
                 </Breadcrumb>
               </div>
-              <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
-                <Button variant="ghost" className="hidden md:flex">GitHub</Button>
+              <div className="flex w-full items-center justify-end gap-2 sm:w-auto">
+                <Button variant="ghost" className="hidden md:flex">
+                  GitHub
+                </Button>
                 <Select
                   value={theme}
-                  onValueChange={(value) =>
-                    setTheme(value as "light" | "dark" | "system")
-                  }
+                  onValueChange={(value) => setTheme(value as 'light' | 'dark' | 'system')}
                 >
                   <SelectTrigger className="w-28 sm:w-32 lg:w-40">
                     <SelectValue placeholder="Theme" />
@@ -84,7 +82,7 @@ export default function PayrollMcp() {
             </header>
 
             {/* Dashboard Content */}
-            <div className="flex-1 p-3 sm:p-4 lg:p-6 overflow-auto">
+            <div className="flex-1 overflow-auto p-3 sm:p-4 lg:p-6">
               <div className="space-y-4 sm:space-y-6">
                 {/* Statistics Cards Section */}
                 <StatsCards />

@@ -67,9 +67,9 @@
    =================================================================== */
 :root {
   /* Fonts */
-  --font-geist-sans: "Geist", system-ui, -apple-system, sans-serif;
-  --font-geist-serif: "Georgia", serif;
-  --font-geist-mono: "Geist Mono", ui-monospace, monospace;
+  --font-geist-sans: 'Geist', system-ui, -apple-system, sans-serif;
+  --font-geist-serif: 'Georgia', serif;
+  --font-geist-mono: 'Geist Mono', ui-monospace, monospace;
 
   /* Border Radius (from Figma) */
   --radius-xs: 12px;

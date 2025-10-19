@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { DatePicker } from "@/components/ui/date-picker";
-import { DateRangePicker, type DateRange } from "@/components/ui/date-range-picker";
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { DatePicker } from '@/components/ui/date-picker';
+import { DateRangePicker, type DateRange } from '@/components/ui/date-range-picker';
 import {
   Card,
   CardContent,
@@ -10,8 +10,8 @@ import {
   CardHeader,
   CardTitle,
   CardFooter,
-} from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   Table,
   TableBody,
@@ -20,23 +20,25 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Separator } from "@/components/ui/separator";
-import { Progress } from "@/components/ui/progress";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+} from '@/components/ui/table';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent
-} from "@/components/ui/chart";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Badge } from '@/components/ui/badge';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Separator } from '@/components/ui/separator';
+import { Progress } from '@/components/ui/progress';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -44,7 +46,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 import {
   Dialog,
   DialogContent,
@@ -52,18 +54,20 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+} from '@/components/ui/dialog';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import { useTheme } from "@/context/theme-context";
-import { cn } from "@/lib/utils";
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
+import { useTheme } from '@/context/theme-context';
+import { cn } from '@/lib/utils';
 import {
   BarChart,
   Bar,
@@ -78,10 +82,10 @@ import {
   YAxis,
   CartesianGrid,
   Legend,
-  ResponsiveContainer
-} from "recharts";
-import { toast } from "sonner";
-import { DataTable, columns, type Payment } from "@/components/data-table";
+  ResponsiveContainer,
+} from 'recharts';
+import { toast } from 'sonner';
+import { DataTable, columns, type Payment } from '@/components/data-table';
 
 function Demo() {
   const { theme, setTheme } = useTheme();
@@ -90,261 +94,261 @@ function Demo() {
 
   // Chart data
   const chartData = [
-    { month: "Jan", revenue: 4000, expenses: 2400, profit: 1600, users: 240, orders: 180 },
-    { month: "Feb", revenue: 3000, expenses: 1398, profit: 1602, users: 198, orders: 150 },
-    { month: "Mar", revenue: 2000, expenses: 9800, profit: -7800, users: 980, orders: 95 },
-    { month: "Apr", revenue: 2780, expenses: 3908, profit: -1128, users: 390, orders: 120 },
-    { month: "May", revenue: 1890, expenses: 4800, profit: -2910, users: 480, orders: 85 },
-    { month: "Jun", revenue: 2390, expenses: 3800, profit: -1410, users: 380, orders: 110 },
-    { month: "Jul", revenue: 3490, expenses: 4300, profit: -810, users: 430, orders: 145 },
-    { month: "Aug", revenue: 4200, expenses: 2100, profit: 2100, users: 210, orders: 195 },
-    { month: "Sep", revenue: 5100, expenses: 2800, profit: 2300, users: 280, orders: 230 },
-    { month: "Oct", revenue: 6200, expenses: 3200, profit: 3000, users: 320, orders: 280 },
-    { month: "Nov", revenue: 5800, expenses: 3100, profit: 2700, users: 310, orders: 265 },
-    { month: "Dec", revenue: 7200, expenses: 3500, profit: 3700, users: 350, orders: 320 },
+    { month: 'Jan', revenue: 4000, expenses: 2400, profit: 1600, users: 240, orders: 180 },
+    { month: 'Feb', revenue: 3000, expenses: 1398, profit: 1602, users: 198, orders: 150 },
+    { month: 'Mar', revenue: 2000, expenses: 9800, profit: -7800, users: 980, orders: 95 },
+    { month: 'Apr', revenue: 2780, expenses: 3908, profit: -1128, users: 390, orders: 120 },
+    { month: 'May', revenue: 1890, expenses: 4800, profit: -2910, users: 480, orders: 85 },
+    { month: 'Jun', revenue: 2390, expenses: 3800, profit: -1410, users: 380, orders: 110 },
+    { month: 'Jul', revenue: 3490, expenses: 4300, profit: -810, users: 430, orders: 145 },
+    { month: 'Aug', revenue: 4200, expenses: 2100, profit: 2100, users: 210, orders: 195 },
+    { month: 'Sep', revenue: 5100, expenses: 2800, profit: 2300, users: 280, orders: 230 },
+    { month: 'Oct', revenue: 6200, expenses: 3200, profit: 3000, users: 320, orders: 280 },
+    { month: 'Nov', revenue: 5800, expenses: 3100, profit: 2700, users: 310, orders: 265 },
+    { month: 'Dec', revenue: 7200, expenses: 3500, profit: 3700, users: 350, orders: 320 },
   ];
 
   const pieData = [
-    { name: "Development", value: 400, color: "hsl(var(--chart-1))" },
-    { name: "Marketing", value: 300, color: "hsl(var(--chart-2))" },
-    { name: "Sales", value: 200, color: "hsl(var(--chart-3))" },
-    { name: "Support", value: 100, color: "hsl(var(--chart-4))" },
+    { name: 'Development', value: 400, color: 'hsl(var(--chart-1))' },
+    { name: 'Marketing', value: 300, color: 'hsl(var(--chart-2))' },
+    { name: 'Sales', value: 200, color: 'hsl(var(--chart-3))' },
+    { name: 'Support', value: 100, color: 'hsl(var(--chart-4))' },
   ];
 
   const trafficData = [
-    { source: "Direct", desktop: 4200, mobile: 2100, tablet: 800 },
-    { source: "Social", desktop: 3100, mobile: 4500, tablet: 1200 },
-    { source: "Email", desktop: 2800, mobile: 1800, tablet: 600 },
-    { source: "Search", desktop: 5200, mobile: 3800, tablet: 1500 },
-    { source: "Referral", desktop: 1900, mobile: 2400, tablet: 700 },
+    { source: 'Direct', desktop: 4200, mobile: 2100, tablet: 800 },
+    { source: 'Social', desktop: 3100, mobile: 4500, tablet: 1200 },
+    { source: 'Email', desktop: 2800, mobile: 1800, tablet: 600 },
+    { source: 'Search', desktop: 5200, mobile: 3800, tablet: 1500 },
+    { source: 'Referral', desktop: 1900, mobile: 2400, tablet: 700 },
   ];
 
   const categoryData = [
-    { category: "Electronics", sales: 18500, growth: 12.5 },
-    { category: "Clothing", sales: 15200, growth: 8.3 },
-    { category: "Food", sales: 12800, growth: -3.2 },
-    { category: "Books", sales: 9500, growth: 15.7 },
-    { category: "Sports", sales: 11200, growth: 6.8 },
-    { category: "Home", sales: 13900, growth: 9.4 },
+    { category: 'Electronics', sales: 18500, growth: 12.5 },
+    { category: 'Clothing', sales: 15200, growth: 8.3 },
+    { category: 'Food', sales: 12800, growth: -3.2 },
+    { category: 'Books', sales: 9500, growth: 15.7 },
+    { category: 'Sports', sales: 11200, growth: 6.8 },
+    { category: 'Home', sales: 13900, growth: 9.4 },
   ];
 
   const userActivityData = [
-    { time: "00:00", active: 150 },
-    { time: "03:00", active: 80 },
-    { time: "06:00", active: 120 },
-    { time: "09:00", active: 450 },
-    { time: "12:00", active: 680 },
-    { time: "15:00", active: 590 },
-    { time: "18:00", active: 720 },
-    { time: "21:00", active: 480 },
+    { time: '00:00', active: 150 },
+    { time: '03:00', active: 80 },
+    { time: '06:00', active: 120 },
+    { time: '09:00', active: 450 },
+    { time: '12:00', active: 680 },
+    { time: '15:00', active: 590 },
+    { time: '18:00', active: 720 },
+    { time: '21:00', active: 480 },
   ];
 
   const regionData = [
-    { name: "Europe", value: 3500, color: "hsl(var(--chart-1))" },
-    { name: "North America", value: 4200, color: "hsl(var(--chart-2))" },
-    { name: "Asia", value: 5800, color: "hsl(var(--chart-3))" },
-    { name: "South America", value: 1200, color: "hsl(var(--chart-4))" },
-    { name: "Africa", value: 800, color: "hsl(var(--chart-5))" },
-    { name: "Australia", value: 600, color: "hsl(220 70% 50%)" },
+    { name: 'Europe', value: 3500, color: 'hsl(var(--chart-1))' },
+    { name: 'North America', value: 4200, color: 'hsl(var(--chart-2))' },
+    { name: 'Asia', value: 5800, color: 'hsl(var(--chart-3))' },
+    { name: 'South America', value: 1200, color: 'hsl(var(--chart-4))' },
+    { name: 'Africa', value: 800, color: 'hsl(var(--chart-5))' },
+    { name: 'Australia', value: 600, color: 'hsl(220 70% 50%)' },
   ];
 
   // Table data
   const tableData = [
     {
-      id: "INV001",
-      status: "Paid",
-      method: "Credit Card",
-      amount: "$250.00",
-      date: "2024-01-15",
+      id: 'INV001',
+      status: 'Paid',
+      method: 'Credit Card',
+      amount: '$250.00',
+      date: '2024-01-15',
     },
     {
-      id: "INV002",
-      status: "Pending",
-      method: "PayPal",
-      amount: "$150.00",
-      date: "2024-01-16",
+      id: 'INV002',
+      status: 'Pending',
+      method: 'PayPal',
+      amount: '$150.00',
+      date: '2024-01-16',
     },
     {
-      id: "INV003",
-      status: "Unpaid",
-      method: "Bank Transfer",
-      amount: "$350.00",
-      date: "2024-01-17",
+      id: 'INV003',
+      status: 'Unpaid',
+      method: 'Bank Transfer',
+      amount: '$350.00',
+      date: '2024-01-17',
     },
     {
-      id: "INV004",
-      status: "Paid",
-      method: "Credit Card",
-      amount: "$450.00",
-      date: "2024-01-18",
+      id: 'INV004',
+      status: 'Paid',
+      method: 'Credit Card',
+      amount: '$450.00',
+      date: '2024-01-18',
     },
     {
-      id: "INV005",
-      status: "Paid",
-      method: "PayPal",
-      amount: "$550.00",
-      date: "2024-01-19",
+      id: 'INV005',
+      status: 'Paid',
+      method: 'PayPal',
+      amount: '$550.00',
+      date: '2024-01-19',
     },
     {
-      id: "INV006",
-      status: "Pending",
-      method: "Credit Card",
-      amount: "$200.00",
-      date: "2024-01-20",
+      id: 'INV006',
+      status: 'Pending',
+      method: 'Credit Card',
+      amount: '$200.00',
+      date: '2024-01-20',
     },
   ];
 
   // Payment data for DataTable
   const paymentData: Payment[] = [
     {
-      id: "PAY-001",
+      id: 'PAY-001',
       amount: 316,
-      status: "success",
-      email: "john.doe@example.com",
-      date: "2024-01-15",
+      status: 'success',
+      email: 'john.doe@example.com',
+      date: '2024-01-15',
     },
     {
-      id: "PAY-002",
+      id: 'PAY-002',
       amount: 242,
-      status: "pending",
-      email: "jane.smith@example.com",
-      date: "2024-01-16",
+      status: 'pending',
+      email: 'jane.smith@example.com',
+      date: '2024-01-16',
     },
     {
-      id: "PAY-003",
+      id: 'PAY-003',
       amount: 837,
-      status: "processing",
-      email: "bob.jones@example.com",
-      date: "2024-01-17",
+      status: 'processing',
+      email: 'bob.jones@example.com',
+      date: '2024-01-17',
     },
     {
-      id: "PAY-004",
+      id: 'PAY-004',
       amount: 874,
-      status: "success",
-      email: "alice.williams@example.com",
-      date: "2024-01-18",
+      status: 'success',
+      email: 'alice.williams@example.com',
+      date: '2024-01-18',
     },
     {
-      id: "PAY-005",
+      id: 'PAY-005',
       amount: 721,
-      status: "failed",
-      email: "charlie.brown@example.com",
-      date: "2024-01-19",
+      status: 'failed',
+      email: 'charlie.brown@example.com',
+      date: '2024-01-19',
     },
     {
-      id: "PAY-006",
+      id: 'PAY-006',
       amount: 483,
-      status: "success",
-      email: "eva.martinez@example.com",
-      date: "2024-01-20",
+      status: 'success',
+      email: 'eva.martinez@example.com',
+      date: '2024-01-20',
     },
     {
-      id: "PAY-007",
+      id: 'PAY-007',
       amount: 912,
-      status: "processing",
-      email: "david.garcia@example.com",
-      date: "2024-01-21",
+      status: 'processing',
+      email: 'david.garcia@example.com',
+      date: '2024-01-21',
     },
     {
-      id: "PAY-008",
+      id: 'PAY-008',
       amount: 365,
-      status: "success",
-      email: "sophia.rodriguez@example.com",
-      date: "2024-01-22",
+      status: 'success',
+      email: 'sophia.rodriguez@example.com',
+      date: '2024-01-22',
     },
     {
-      id: "PAY-009",
+      id: 'PAY-009',
       amount: 189,
-      status: "pending",
-      email: "michael.johnson@example.com",
-      date: "2024-01-23",
+      status: 'pending',
+      email: 'michael.johnson@example.com',
+      date: '2024-01-23',
     },
     {
-      id: "PAY-010",
+      id: 'PAY-010',
       amount: 654,
-      status: "success",
-      email: "emma.davis@example.com",
-      date: "2024-01-24",
+      status: 'success',
+      email: 'emma.davis@example.com',
+      date: '2024-01-24',
     },
     {
-      id: "PAY-011",
+      id: 'PAY-011',
       amount: 298,
-      status: "failed",
-      email: "oliver.wilson@example.com",
-      date: "2024-01-25",
+      status: 'failed',
+      email: 'oliver.wilson@example.com',
+      date: '2024-01-25',
     },
     {
-      id: "PAY-012",
+      id: 'PAY-012',
       amount: 776,
-      status: "success",
-      email: "ava.taylor@example.com",
-      date: "2024-01-26",
+      status: 'success',
+      email: 'ava.taylor@example.com',
+      date: '2024-01-26',
     },
     {
-      id: "PAY-013",
+      id: 'PAY-013',
       amount: 431,
-      status: "processing",
-      email: "william.anderson@example.com",
-      date: "2024-01-27",
+      status: 'processing',
+      email: 'william.anderson@example.com',
+      date: '2024-01-27',
     },
     {
-      id: "PAY-014",
+      id: 'PAY-014',
       amount: 892,
-      status: "success",
-      email: "isabella.thomas@example.com",
-      date: "2024-01-28",
+      status: 'success',
+      email: 'isabella.thomas@example.com',
+      date: '2024-01-28',
     },
     {
-      id: "PAY-015",
+      id: 'PAY-015',
       amount: 567,
-      status: "pending",
-      email: "james.jackson@example.com",
-      date: "2024-01-29",
+      status: 'pending',
+      email: 'james.jackson@example.com',
+      date: '2024-01-29',
     },
     {
-      id: "PAY-016",
+      id: 'PAY-016',
       amount: 234,
-      status: "success",
-      email: "mia.white@example.com",
-      date: "2024-01-30",
+      status: 'success',
+      email: 'mia.white@example.com',
+      date: '2024-01-30',
     },
     {
-      id: "PAY-017",
+      id: 'PAY-017',
       amount: 789,
-      status: "success",
-      email: "benjamin.harris@example.com",
-      date: "2024-02-01",
+      status: 'success',
+      email: 'benjamin.harris@example.com',
+      date: '2024-02-01',
     },
     {
-      id: "PAY-018",
+      id: 'PAY-018',
       amount: 412,
-      status: "failed",
-      email: "charlotte.martin@example.com",
-      date: "2024-02-02",
+      status: 'failed',
+      email: 'charlotte.martin@example.com',
+      date: '2024-02-02',
     },
     {
-      id: "PAY-019",
+      id: 'PAY-019',
       amount: 923,
-      status: "processing",
-      email: "lucas.thompson@example.com",
-      date: "2024-02-03",
+      status: 'processing',
+      email: 'lucas.thompson@example.com',
+      date: '2024-02-03',
     },
     {
-      id: "PAY-020",
+      id: 'PAY-020',
       amount: 656,
-      status: "success",
-      email: "amelia.moore@example.com",
-      date: "2024-02-04",
+      status: 'success',
+      email: 'amelia.moore@example.com',
+      date: '2024-02-04',
     },
   ];
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case "Paid":
+      case 'Paid':
         return <Badge variant="default">Paid</Badge>;
-      case "Pending":
+      case 'Pending':
         return <Badge variant="secondary">Pending</Badge>;
-      case "Unpaid":
+      case 'Unpaid':
         return <Badge variant="destructive">Unpaid</Badge>;
       default:
         return <Badge>{status}</Badge>;
@@ -352,20 +356,25 @@ function Demo() {
   };
 
   return (
-    <div className={cn("min-h-screen bg-background text-foreground")}>
+    <div className={cn('bg-background text-foreground min-h-screen')}>
       {/* Header */}
-      <header className={cn("sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60")}>
-        <div className={cn("container flex h-16 items-center justify-between px-4")}>
+      <header
+        className={cn(
+          'bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur'
+        )}
+      >
+        <div className={cn('container flex h-16 items-center justify-between px-4')}>
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-primary" />
+            <div className="bg-primary h-8 w-8 rounded-lg" />
             <div>
               <h1 className="text-xl font-bold">UI Components Demo</h1>
-              <p className="text-xs text-muted-foreground">
-                Tailwind v4 + shadcn/ui
-              </p>
+              <p className="text-muted-foreground text-xs">Tailwind v4 + shadcn/ui</p>
             </div>
           </div>
-          <Select value={theme} onValueChange={(value) => setTheme(value as 'light' | 'dark' | 'system')}>
+          <Select
+            value={theme}
+            onValueChange={(value) => setTheme(value as 'light' | 'dark' | 'system')}
+          >
             <SelectTrigger className="w-40">
               <SelectValue placeholder="Theme" />
             </SelectTrigger>
@@ -399,17 +408,16 @@ function Demo() {
           </Breadcrumb>
 
           {/* Hero Section */}
-          <section className={cn("flex flex-col items-center justify-center py-12 text-center")}>
-            <div className={cn("space-y-4")}>
-              <h2 className={cn("text-4xl font-bold tracking-tight sm:text-6xl")}>
+          <section className={cn('flex flex-col items-center justify-center py-12 text-center')}>
+            <div className={cn('space-y-4')}>
+              <h2 className={cn('text-4xl font-bold tracking-tight sm:text-6xl')}>
                 Полная демонстрация компонентов
               </h2>
-              <p className={cn("text-xl text-muted-foreground max-w-2xl")}>
-                Все UI компоненты, графики и таблицы из shadcn/ui с
-                поддержкой светлой и тёмной темы
+              <p className={cn('text-muted-foreground max-w-2xl text-xl')}>
+                Все UI компоненты, графики и таблицы из shadcn/ui с поддержкой светлой и тёмной темы
               </p>
-              <div className={cn("flex gap-3 justify-center pt-4")}>
-                <Button size="lg" onClick={() => toast.success("Добро пожаловать!")}>
+              <div className={cn('flex justify-center gap-3 pt-4')}>
+                <Button size="lg" onClick={() => toast.success('Добро пожаловать!')}>
                   Начать
                 </Button>
                 <Button size="lg" variant="outline">
@@ -431,9 +439,7 @@ function Demo() {
               </Alert>
               <Alert variant="destructive">
                 <AlertTitle>Ошибка</AlertTitle>
-                <AlertDescription>
-                  Произошла ошибка при выполнении операции.
-                </AlertDescription>
+                <AlertDescription>Произошла ошибка при выполнении операции.</AlertDescription>
               </Alert>
             </div>
           </section>
@@ -461,7 +467,7 @@ function Demo() {
                   </CardHeader>
                   <CardContent className="space-y-6">
                     <div>
-                      <h4 className="text-sm font-medium mb-3">Варианты:</h4>
+                      <h4 className="mb-3 text-sm font-medium">Варианты:</h4>
                       <div className="flex flex-wrap gap-3">
                         <Button variant="default">Default</Button>
                         <Button variant="secondary">Secondary</Button>
@@ -473,7 +479,7 @@ function Demo() {
                     </div>
                     <Separator />
                     <div>
-                      <h4 className="text-sm font-medium mb-3">Размеры:</h4>
+                      <h4 className="mb-3 text-sm font-medium">Размеры:</h4>
                       <div className="flex flex-wrap items-center gap-3">
                         <Button size="sm">Small</Button>
                         <Button size="default">Default</Button>
@@ -505,12 +511,10 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Аватары (Avatars)</CardTitle>
-                    <CardDescription>
-                      Отображение изображений профиля пользователей
-                    </CardDescription>
+                    <CardDescription>Отображение изображений профиля пользователей</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex gap-4 items-center">
+                    <div className="flex items-center gap-4">
                       <Avatar>
                         <AvatarFallback>CN</AvatarFallback>
                       </Avatar>
@@ -528,9 +532,7 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Прогресс и загрузка</CardTitle>
-                    <CardDescription>
-                      Индикаторы прогресса и состояния загрузки
-                    </CardDescription>
+                    <CardDescription>Индикаторы прогресса и состояния загрузки</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
                     <div className="space-y-2">
@@ -557,9 +559,7 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Выпадающее меню</CardTitle>
-                    <CardDescription>
-                      Меню с различными опциями и действиями
-                    </CardDescription>
+                    <CardDescription>Меню с различными опциями и действиями</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <DropdownMenu>
@@ -583,9 +583,7 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Диалоговое окно</CardTitle>
-                    <CardDescription>
-                      Модальное окно для важных действий
-                    </CardDescription>
+                    <CardDescription>Модальное окно для важных действий</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <Dialog>
@@ -612,9 +610,7 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Подсказки (Tooltips)</CardTitle>
-                    <CardDescription>
-                      Всплывающие подсказки при наведении
-                    </CardDescription>
+                    <CardDescription>Всплывающие подсказки при наведении</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <TooltipProvider>
@@ -647,9 +643,7 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Поля ввода (Inputs)</CardTitle>
-                    <CardDescription>
-                      Различные типы полей для ввода данных
-                    </CardDescription>
+                    <CardDescription>Различные типы полей для ввода данных</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="space-y-2">
@@ -671,9 +665,7 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Текстовая область (Textarea)</CardTitle>
-                    <CardDescription>
-                      Многострочное поле ввода текста
-                    </CardDescription>
+                    <CardDescription>Многострочное поле ввода текста</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
@@ -687,9 +679,7 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Чекбоксы и переключатели</CardTitle>
-                    <CardDescription>
-                      Элементы для выбора опций
-                    </CardDescription>
+                    <CardDescription>Элементы для выбора опций</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
                     <div className="space-y-3">
@@ -722,9 +712,7 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Радио-кнопки</CardTitle>
-                    <CardDescription>
-                      Выбор одного варианта из нескольких
-                    </CardDescription>
+                    <CardDescription>Выбор одного варианта из нескольких</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <RadioGroup defaultValue="option-one">
@@ -748,9 +736,7 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Выпадающий список (Select)</CardTitle>
-                    <CardDescription>
-                      Выбор значения из списка опций
-                    </CardDescription>
+                    <CardDescription>Выбор значения из списка опций</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
@@ -775,9 +761,7 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Выбор даты (DatePicker)</CardTitle>
-                    <CardDescription>
-                      Календарь для выбора даты
-                    </CardDescription>
+                    <CardDescription>Календарь для выбора даты</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="space-y-2">
@@ -789,13 +773,13 @@ function Demo() {
                       />
                     </div>
                     {selectedDate && (
-                      <div className="rounded-lg border p-3 bg-muted">
+                      <div className="bg-muted rounded-lg border p-3">
                         <p className="text-sm">
                           <span className="font-medium">Выбранная дата: </span>
                           {selectedDate.toLocaleDateString('ru-RU', {
                             day: 'numeric',
                             month: 'long',
-                            year: 'numeric'
+                            year: 'numeric',
                           })}
                         </p>
                       </div>
@@ -807,9 +791,7 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Выбор диапазона дат (DateRangePicker)</CardTitle>
-                    <CardDescription>
-                      Календарь для выбора периода с двумя месяцами
-                    </CardDescription>
+                    <CardDescription>Календарь для выбора периода с двумя месяцами</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="space-y-2">
@@ -821,13 +803,13 @@ function Demo() {
                       />
                     </div>
                     {dateRange?.from && (
-                      <div className="rounded-lg border p-3 bg-muted space-y-1">
+                      <div className="bg-muted space-y-1 rounded-lg border p-3">
                         <p className="text-sm">
                           <span className="font-medium">Начало: </span>
                           {dateRange.from.toLocaleDateString('ru-RU', {
                             day: 'numeric',
                             month: 'long',
-                            year: 'numeric'
+                            year: 'numeric',
                           })}
                         </p>
                         {dateRange.to && (
@@ -836,14 +818,17 @@ function Demo() {
                             {dateRange.to.toLocaleDateString('ru-RU', {
                               day: 'numeric',
                               month: 'long',
-                              year: 'numeric'
+                              year: 'numeric',
                             })}
                           </p>
                         )}
                         {dateRange.from && dateRange.to && (
-                          <p className="text-sm pt-2 border-t mt-2">
+                          <p className="mt-2 border-t pt-2 text-sm">
                             <span className="font-medium">Количество дней: </span>
-                            {Math.ceil((dateRange.to.getTime() - dateRange.from.getTime()) / (1000 * 60 * 60 * 24)) + 1}
+                            {Math.ceil(
+                              (dateRange.to.getTime() - dateRange.from.getTime()) /
+                                (1000 * 60 * 60 * 24)
+                            ) + 1}
                           </p>
                         )}
                       </div>
@@ -930,20 +915,18 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Столбчатая диаграмма</CardTitle>
-                    <CardDescription>
-                      Сравнение доходов и расходов по месяцам
-                    </CardDescription>
+                    <CardDescription>Сравнение доходов и расходов по месяцам</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ChartContainer
                       config={{
                         revenue: {
-                          label: "Доходы",
-                          color: "hsl(var(--chart-1))",
+                          label: 'Доходы',
+                          color: 'hsl(var(--chart-1))',
                         },
                         expenses: {
-                          label: "Расходы",
-                          color: "hsl(var(--chart-2))",
+                          label: 'Расходы',
+                          color: 'hsl(var(--chart-2))',
                         },
                       }}
                       className="h-[400px]"
@@ -967,16 +950,14 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Линейный график</CardTitle>
-                    <CardDescription>
-                      Динамика прибыли за год
-                    </CardDescription>
+                    <CardDescription>Динамика прибыли за год</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ChartContainer
                       config={{
                         profit: {
-                          label: "Прибыль",
-                          color: "hsl(var(--chart-3))",
+                          label: 'Прибыль',
+                          color: 'hsl(var(--chart-3))',
                         },
                       }}
                       className="h-[400px]"
@@ -1005,20 +986,18 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Диаграмма с областью</CardTitle>
-                    <CardDescription>
-                      Визуализация накопительных показателей
-                    </CardDescription>
+                    <CardDescription>Визуализация накопительных показателей</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ChartContainer
                       config={{
                         revenue: {
-                          label: "Доходы",
-                          color: "hsl(var(--chart-1))",
+                          label: 'Доходы',
+                          color: 'hsl(var(--chart-1))',
                         },
                         expenses: {
-                          label: "Расходы",
-                          color: "hsl(var(--chart-2))",
+                          label: 'Расходы',
+                          color: 'hsl(var(--chart-2))',
                         },
                       }}
                       className="h-[400px]"
@@ -1058,15 +1037,13 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Круговая диаграмма</CardTitle>
-                    <CardDescription>
-                      Распределение бюджета по департаментам
-                    </CardDescription>
+                    <CardDescription>Распределение бюджета по департаментам</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ChartContainer
                       config={{
                         value: {
-                          label: "Значение",
+                          label: 'Значение',
                         },
                       }}
                       className="h-[400px]"
@@ -1098,24 +1075,22 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Столбчатая диаграмма с накоплением</CardTitle>
-                    <CardDescription>
-                      Трафик по устройствам из разных источников
-                    </CardDescription>
+                    <CardDescription>Трафик по устройствам из разных источников</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ChartContainer
                       config={{
                         desktop: {
-                          label: "Desktop",
-                          color: "hsl(var(--chart-1))",
+                          label: 'Desktop',
+                          color: 'hsl(var(--chart-1))',
                         },
                         mobile: {
-                          label: "Mobile",
-                          color: "hsl(var(--chart-2))",
+                          label: 'Mobile',
+                          color: 'hsl(var(--chart-2))',
                         },
                         tablet: {
-                          label: "Tablet",
-                          color: "hsl(var(--chart-3))",
+                          label: 'Tablet',
+                          color: 'hsl(var(--chart-3))',
                         },
                       }}
                       className="h-[400px]"
@@ -1127,9 +1102,24 @@ function Demo() {
                           <YAxis />
                           <ChartTooltip content={<ChartTooltipContent />} />
                           <Legend />
-                          <Bar dataKey="desktop" stackId="a" fill="hsl(var(--chart-1))" name="Desktop" />
-                          <Bar dataKey="mobile" stackId="a" fill="hsl(var(--chart-2))" name="Mobile" />
-                          <Bar dataKey="tablet" stackId="a" fill="hsl(var(--chart-3))" name="Tablet" />
+                          <Bar
+                            dataKey="desktop"
+                            stackId="a"
+                            fill="hsl(var(--chart-1))"
+                            name="Desktop"
+                          />
+                          <Bar
+                            dataKey="mobile"
+                            stackId="a"
+                            fill="hsl(var(--chart-2))"
+                            name="Mobile"
+                          />
+                          <Bar
+                            dataKey="tablet"
+                            stackId="a"
+                            fill="hsl(var(--chart-3))"
+                            name="Tablet"
+                          />
                         </BarChart>
                       </ResponsiveContainer>
                     </ChartContainer>
@@ -1140,20 +1130,18 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Комбинированный график</CardTitle>
-                    <CardDescription>
-                      Продажи по категориям с показателем роста
-                    </CardDescription>
+                    <CardDescription>Продажи по категориям с показателем роста</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ChartContainer
                       config={{
                         sales: {
-                          label: "Продажи",
-                          color: "hsl(var(--chart-1))",
+                          label: 'Продажи',
+                          color: 'hsl(var(--chart-1))',
                         },
                         growth: {
-                          label: "Рост %",
-                          color: "hsl(var(--chart-3))",
+                          label: 'Рост %',
+                          color: 'hsl(var(--chart-3))',
                         },
                       }}
                       className="h-[400px]"
@@ -1166,7 +1154,12 @@ function Demo() {
                           <YAxis yAxisId="right" orientation="right" />
                           <ChartTooltip content={<ChartTooltipContent />} />
                           <Legend />
-                          <Bar yAxisId="left" dataKey="sales" fill="hsl(var(--chart-1))" name="Продажи ($)" />
+                          <Bar
+                            yAxisId="left"
+                            dataKey="sales"
+                            fill="hsl(var(--chart-1))"
+                            name="Продажи ($)"
+                          />
                           <Line
                             yAxisId="right"
                             type="monotone"
@@ -1193,8 +1186,8 @@ function Demo() {
                     <ChartContainer
                       config={{
                         active: {
-                          label: "Активные",
-                          color: "hsl(var(--chart-2))",
+                          label: 'Активные',
+                          color: 'hsl(var(--chart-2))',
                         },
                       }}
                       className="h-[400px]"
@@ -1231,15 +1224,13 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Кольцевая диаграмма</CardTitle>
-                    <CardDescription>
-                      Распределение продаж по регионам
-                    </CardDescription>
+                    <CardDescription>Распределение продаж по регионам</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ChartContainer
                       config={{
                         value: {
-                          label: "Продажи",
+                          label: 'Продажи',
                         },
                       }}
                       className="h-[400px]"
@@ -1273,20 +1264,18 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Многострочный график</CardTitle>
-                    <CardDescription>
-                      Сравнение пользователей и заказов за год
-                    </CardDescription>
+                    <CardDescription>Сравнение пользователей и заказов за год</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ChartContainer
                       config={{
                         users: {
-                          label: "Пользователи",
-                          color: "hsl(var(--chart-4))",
+                          label: 'Пользователи',
+                          color: 'hsl(var(--chart-4))',
                         },
                         orders: {
-                          label: "Заказы",
-                          color: "hsl(var(--chart-5))",
+                          label: 'Заказы',
+                          color: 'hsl(var(--chart-5))',
                         },
                       }}
                       className="h-[400px]"
@@ -1324,16 +1313,14 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Горизонтальная столбчатая диаграмма</CardTitle>
-                    <CardDescription>
-                      Продажи по категориям (топ-6)
-                    </CardDescription>
+                    <CardDescription>Продажи по категориям (топ-6)</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <ChartContainer
                       config={{
                         sales: {
-                          label: "Продажи",
-                          color: "hsl(var(--chart-1))",
+                          label: 'Продажи',
+                          color: 'hsl(var(--chart-1))',
                         },
                       }}
                       className="h-[400px]"
@@ -1359,9 +1346,7 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Комплексная карточка</CardTitle>
-                    <CardDescription>
-                      Пример карточки со всеми элементами
-                    </CardDescription>
+                    <CardDescription>Пример карточки со всеми элементами</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="flex items-center justify-between">
@@ -1371,7 +1356,7 @@ function Demo() {
                         </Avatar>
                         <div>
                           <p className="text-sm font-medium">John Doe</p>
-                          <p className="text-xs text-muted-foreground">john@example.com</p>
+                          <p className="text-muted-foreground text-xs">john@example.com</p>
                         </div>
                       </div>
                       <Badge>Premium</Badge>
@@ -1387,15 +1372,15 @@ function Demo() {
                     <div className="grid grid-cols-3 gap-4 text-center">
                       <div>
                         <p className="text-2xl font-bold">24</p>
-                        <p className="text-xs text-muted-foreground">Проектов</p>
+                        <p className="text-muted-foreground text-xs">Проектов</p>
                       </div>
                       <div>
                         <p className="text-2xl font-bold">128</p>
-                        <p className="text-xs text-muted-foreground">Задач</p>
+                        <p className="text-muted-foreground text-xs">Задач</p>
                       </div>
                       <div>
                         <p className="text-2xl font-bold">8</p>
-                        <p className="text-xs text-muted-foreground">Команд</p>
+                        <p className="text-muted-foreground text-xs">Команд</p>
                       </div>
                     </div>
                   </CardContent>
@@ -1414,7 +1399,7 @@ function Demo() {
                     </CardHeader>
                     <CardContent>
                       <div className="text-3xl font-bold">$45,231.89</div>
-                      <p className="text-xs text-muted-foreground mt-1">
+                      <p className="text-muted-foreground mt-1 text-xs">
                         +20.1% от прошлого месяца
                       </p>
                     </CardContent>
@@ -1427,7 +1412,7 @@ function Demo() {
                     </CardHeader>
                     <CardContent>
                       <div className="text-3xl font-bold">+2350</div>
-                      <p className="text-xs text-muted-foreground mt-1">
+                      <p className="text-muted-foreground mt-1 text-xs">
                         +180.1% от прошлого месяца
                       </p>
                     </CardContent>
@@ -1440,9 +1425,7 @@ function Demo() {
                     </CardHeader>
                     <CardContent>
                       <div className="text-3xl font-bold">+573</div>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        +201 с прошлого часа
-                      </p>
+                      <p className="text-muted-foreground mt-1 text-xs">+201 с прошлого часа</p>
                     </CardContent>
                   </Card>
                 </div>
@@ -1451,31 +1434,26 @@ function Demo() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Всплывающие уведомления (Toast)</CardTitle>
-                    <CardDescription>
-                      Нажмите на кнопки для отображения уведомлений
-                    </CardDescription>
+                    <CardDescription>Нажмите на кнопки для отображения уведомлений</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="flex flex-wrap gap-3">
-                      <Button onClick={() => toast.success("Операция выполнена успешно!")}>
+                      <Button onClick={() => toast.success('Операция выполнена успешно!')}>
                         Успех
                       </Button>
                       <Button
                         variant="destructive"
-                        onClick={() => toast.error("Произошла ошибка!")}
+                        onClick={() => toast.error('Произошла ошибка!')}
                       >
                         Ошибка
                       </Button>
                       <Button
                         variant="secondary"
-                        onClick={() => toast.info("Информационное сообщение")}
+                        onClick={() => toast.info('Информационное сообщение')}
                       >
                         Инфо
                       </Button>
-                      <Button
-                        variant="outline"
-                        onClick={() => toast("Простое уведомление")}
-                      >
+                      <Button variant="outline" onClick={() => toast('Простое уведомление')}>
                         Обычное
                       </Button>
                     </div>
@@ -1488,10 +1466,10 @@ function Demo() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t mt-12">
+      <footer className="mt-12 border-t">
         <div className="container px-4 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-muted-foreground">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+            <p className="text-muted-foreground text-sm">
               © 2024 UI Components Demo. Built with Tailwind v4 + shadcn/ui
             </p>
             <div className="flex gap-4">

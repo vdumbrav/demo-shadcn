@@ -2,7 +2,7 @@
  * Drag and Drop utilities for table row reordering
  */
 
-import { type TableRowData } from "./mockData";
+import { type TableRowData } from './mockData';
 
 export interface DragState {
   draggedItem: number | null;
@@ -17,14 +17,19 @@ export const handleDragStart = (
   setState({ draggedItem: index, dragOverItem: null, isDragging: true });
 };
 
-export const handleDragOver = (index: number, setState: (state: DragState | ((prev: DragState) => DragState)) => void) => {
+export const handleDragOver = (
+  index: number,
+  setState: (state: DragState | ((prev: DragState) => DragState)) => void
+) => {
   setState((prev: DragState) => ({
     ...prev,
     dragOverItem: index,
   }));
 };
 
-export const handleDragLeave = (setState: (state: DragState | ((prev: DragState) => DragState)) => void) => {
+export const handleDragLeave = (
+  setState: (state: DragState | ((prev: DragState) => DragState)) => void
+) => {
   setState((prev: DragState) => ({
     ...prev,
     dragOverItem: null,
@@ -57,6 +62,8 @@ export const handleDrop = (
   setState({ draggedItem: null, dragOverItem: null, isDragging: false });
 };
 
-export const handleDragEnd = (setState: (state: DragState | ((prev: DragState) => DragState)) => void) => {
+export const handleDragEnd = (
+  setState: (state: DragState | ((prev: DragState) => DragState)) => void
+) => {
   setState({ draggedItem: null, dragOverItem: null, isDragging: false });
 };

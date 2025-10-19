@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -8,20 +8,20 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { type FilterOptions, getDefaultFilters, getFilterOptions } from "../data/filterUtils";
-import { tableData } from "../data/mockData";
-import { Filter, X } from "lucide-react";
+} from '@/components/ui/select';
+import { type FilterOptions, getDefaultFilters, getFilterOptions } from '../data/filterUtils';
+import { tableData } from '../data/mockData';
+import { Filter, X } from 'lucide-react';
 
 interface AdvancedFilterDialogProps {
   filters: FilterOptions;
@@ -48,17 +48,19 @@ export function AdvancedFilterDialog({ filters, onFiltersChange }: AdvancedFilte
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="flex items-center gap-1 sm:gap-2 w-full sm:w-auto">
-          <Filter className="w-4 h-4" />
+        <Button
+          variant="outline"
+          size="sm"
+          className="flex w-full items-center gap-1 sm:w-auto sm:gap-2"
+        >
+          <Filter className="h-4 w-4" />
           <span className="text-xs sm:text-sm">Filters</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle>Advanced Filters</DialogTitle>
-          <DialogDescription>
-            Filter the table by multiple criteria
-          </DialogDescription>
+          <DialogDescription>Filter the table by multiple criteria</DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6 py-4">
@@ -69,9 +71,7 @@ export function AdvancedFilterDialog({ filters, onFiltersChange }: AdvancedFilte
               id="search"
               placeholder="Search section name..."
               value={localFilters.searchTerm}
-              onChange={(e) =>
-                setLocalFilters({ ...localFilters, searchTerm: e.target.value })
-              }
+              onChange={(e) => setLocalFilters({ ...localFilters, searchTerm: e.target.value })}
             />
           </div>
 
@@ -83,7 +83,7 @@ export function AdvancedFilterDialog({ filters, onFiltersChange }: AdvancedFilte
               onValueChange={(value: string) =>
                 setLocalFilters({
                   ...localFilters,
-                  statusFilter: value as FilterOptions["statusFilter"],
+                  statusFilter: value as FilterOptions['statusFilter'],
                 })
               }
             >
@@ -137,7 +137,7 @@ export function AdvancedFilterDialog({ filters, onFiltersChange }: AdvancedFilte
               onValueChange={(value: string) =>
                 setLocalFilters({
                   ...localFilters,
-                  reviewerFilter: value as FilterOptions["reviewerFilter"],
+                  reviewerFilter: value as FilterOptions['reviewerFilter'],
                 })
               }
             >
@@ -154,10 +154,14 @@ export function AdvancedFilterDialog({ filters, onFiltersChange }: AdvancedFilte
 
           {/* Target Range Filter */}
           <div className="space-y-3">
-            <Label>Target Range: {localFilters.targetRange.min} - {localFilters.targetRange.max}</Label>
+            <Label>
+              Target Range: {localFilters.targetRange.min} - {localFilters.targetRange.max}
+            </Label>
             <div className="flex gap-4">
               <div className="flex-1">
-                <Label htmlFor="min-target" className="text-xs">Min</Label>
+                <Label htmlFor="min-target" className="text-xs">
+                  Min
+                </Label>
                 <Input
                   id="min-target"
                   type="number"
@@ -176,7 +180,9 @@ export function AdvancedFilterDialog({ filters, onFiltersChange }: AdvancedFilte
                 />
               </div>
               <div className="flex-1">
-                <Label htmlFor="max-target" className="text-xs">Max</Label>
+                <Label htmlFor="max-target" className="text-xs">
+                  Max
+                </Label>
                 <Input
                   id="max-target"
                   type="number"
@@ -205,7 +211,7 @@ export function AdvancedFilterDialog({ filters, onFiltersChange }: AdvancedFilte
             onClick={handleReset}
             className="flex items-center gap-2"
           >
-            <X className="w-4 h-4" />
+            <X className="h-4 w-4" />
             Reset Filters
           </Button>
           <div className="flex gap-2">

@@ -1,8 +1,8 @@
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import Demo from "@/pages/Demo";
-import PayrollPlugin from "@/pages/PayrollPlugin";
-import PayrollMcp from "@/pages/PayrollMcp";
-import { Toaster } from "@/components/ui/sonner";
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import Demo from '@/pages/Demo';
+import PayrollPlugin from '@/pages/PayrollPlugin';
+import PayrollMcp from '@/pages/PayrollMcp';
+import { Toaster } from '@/components/ui/sonner';
 
 function App() {
   return (

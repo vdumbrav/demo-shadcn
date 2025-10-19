@@ -1,10 +1,10 @@
-import { type TableRowData } from "./mockData";
+import { type TableRowData } from './mockData';
 
 export interface FilterOptions {
   searchTerm: string;
-  statusFilter: "all" | "done" | "in-process";
+  statusFilter: 'all' | 'done' | 'in-process';
   typeFilter: string[];
-  reviewerFilter: "assigned" | "unassigned" | "all";
+  reviewerFilter: 'assigned' | 'unassigned' | 'all';
   targetRange: { min: number; max: number };
 }
 
@@ -15,10 +15,7 @@ export interface FilterOptions {
 /**
  * Apply all filters to the data
  */
-export const applyFilters = (
-  data: TableRowData[],
-  filters: FilterOptions
-): TableRowData[] => {
+export const applyFilters = (data: TableRowData[], filters: FilterOptions): TableRowData[] => {
   return data.filter((row) => {
     // Search filter
     if (
@@ -29,7 +26,7 @@ export const applyFilters = (
     }
 
     // Status filter
-    if (filters.statusFilter !== "all" && row.status !== filters.statusFilter) {
+    if (filters.statusFilter !== 'all' && row.status !== filters.statusFilter) {
       return false;
     }
 
@@ -39,10 +36,10 @@ export const applyFilters = (
     }
 
     // Reviewer filter
-    if (filters.reviewerFilter === "assigned" && !row.reviewer) {
+    if (filters.reviewerFilter === 'assigned' && !row.reviewer) {
       return false;
     }
-    if (filters.reviewerFilter === "unassigned" && row.reviewer) {
+    if (filters.reviewerFilter === 'unassigned' && row.reviewer) {
       return false;
     }
 
@@ -62,7 +59,7 @@ export const applyFilters = (
 export const getFilterOptions = (data: TableRowData[]) => {
   return {
     types: [...new Set(data.map((row) => row.type))],
-    statuses: ["done", "in-process"],
+    statuses: ['done', 'in-process'],
   };
 };
 
@@ -70,9 +67,9 @@ export const getFilterOptions = (data: TableRowData[]) => {
  * Reset all filters to default values
  */
 export const getDefaultFilters = (): FilterOptions => ({
-  searchTerm: "",
-  statusFilter: "all",
+  searchTerm: '',
+  statusFilter: 'all',
   typeFilter: [],
-  reviewerFilter: "all",
+  reviewerFilter: 'all',
   targetRange: { min: 0, max: 100 },
 });

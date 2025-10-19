@@ -38,7 +38,7 @@ export function DatePicker({
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button
-          variant='outline'
+          variant="outline"
           className={cn(
             'min-w-[200px] justify-start text-left font-normal',
             !value && 'text-muted-foreground',
@@ -47,26 +47,26 @@ export function DatePicker({
           )}
           disabled={disabled}
         >
-          <CalendarIcon className='mr-2 h-4 w-4' />
+          <CalendarIcon className="mr-2 h-4 w-4" />
           {value ? format(value, 'dd/MM/yyyy') : <span>{placeholder}</span>}
           {value && !disabled && (
             <span
-              role='button'
+              role="button"
               tabIndex={-1}
-              className='ml-auto flex h-4 w-4 cursor-pointer items-center justify-center opacity-50 hover:opacity-100'
+              className="ml-auto flex h-4 w-4 cursor-pointer items-center justify-center opacity-50 hover:opacity-100"
               onPointerDown={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
               }}
               onClick={handleClear}
             >
-              <X className='h-4 w-4' />
+              <X className="h-4 w-4" />
             </span>
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='w-auto p-0'>
-        <Calendar mode='single' selected={value} onSelect={handleDateSelect} initialFocus />
+      <PopoverContent className="w-auto p-0">
+        <Calendar mode="single" selected={value} onSelect={handleDateSelect} initialFocus />
       </PopoverContent>
     </Popover>
   );

@@ -1,4 +1,4 @@
-import { type TableRowData } from "./mockData";
+import { type TableRowData } from './mockData';
 
 /**
  * Export utilities for table data to CSV and JSON formats
@@ -7,17 +7,17 @@ import { type TableRowData } from "./mockData";
 /**
  * Export table data to CSV format
  */
-export const exportToCSV = (data: TableRowData[], filename = "payroll_data.csv") => {
+export const exportToCSV = (data: TableRowData[], filename = 'payroll_data.csv') => {
   if (data.length === 0) {
-    alert("No data to export");
+    alert('No data to export');
     return;
   }
 
   // Define CSV headers
-  const headers = ["ID", "Header", "Type", "Status", "Target", "Limit", "Reviewer", "Category"];
+  const headers = ['ID', 'Header', 'Type', 'Status', 'Target', 'Limit', 'Reviewer', 'Category'];
 
   // Create CSV content
-  let csvContent = headers.join(",") + "\n";
+  let csvContent = headers.join(',') + '\n';
 
   // Add data rows
   data.forEach((row) => {
@@ -28,20 +28,20 @@ export const exportToCSV = (data: TableRowData[], filename = "payroll_data.csv")
       row.status,
       row.target,
       row.limit,
-      row.reviewer || "Unassigned",
+      row.reviewer || 'Unassigned',
       row.category,
     ];
-    csvContent += values.join(",") + "\n";
+    csvContent += values.join(',') + '\n';
   });
 
   // Create blob and download
-  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-  const link = document.createElement("a");
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
   const url = URL.createObjectURL(blob);
 
-  link.setAttribute("href", url);
-  link.setAttribute("download", filename);
-  link.style.visibility = "hidden";
+  link.setAttribute('href', url);
+  link.setAttribute('download', filename);
+  link.style.visibility = 'hidden';
 
   document.body.appendChild(link);
   link.click();
@@ -51,20 +51,20 @@ export const exportToCSV = (data: TableRowData[], filename = "payroll_data.csv")
 /**
  * Export table data to JSON format
  */
-export const exportToJSON = (data: TableRowData[], filename = "payroll_data.json") => {
+export const exportToJSON = (data: TableRowData[], filename = 'payroll_data.json') => {
   if (data.length === 0) {
-    alert("No data to export");
+    alert('No data to export');
     return;
   }
 
   const jsonContent = JSON.stringify(data, null, 2);
-  const blob = new Blob([jsonContent], { type: "application/json;charset=utf-8;" });
-  const link = document.createElement("a");
+  const blob = new Blob([jsonContent], { type: 'application/json;charset=utf-8;' });
+  const link = document.createElement('a');
   const url = URL.createObjectURL(blob);
 
-  link.setAttribute("href", url);
-  link.setAttribute("download", filename);
-  link.style.visibility = "hidden";
+  link.setAttribute('href', url);
+  link.setAttribute('download', filename);
+  link.style.visibility = 'hidden';
 
   document.body.appendChild(link);
   link.click();
@@ -74,17 +74,17 @@ export const exportToJSON = (data: TableRowData[], filename = "payroll_data.json
 /**
  * Export table data to Excel-compatible TSV format
  */
-export const exportToTSV = (data: TableRowData[], filename = "payroll_data.tsv") => {
+export const exportToTSV = (data: TableRowData[], filename = 'payroll_data.tsv') => {
   if (data.length === 0) {
-    alert("No data to export");
+    alert('No data to export');
     return;
   }
 
   // Define TSV headers
-  const headers = ["ID", "Header", "Type", "Status", "Target", "Limit", "Reviewer", "Category"];
+  const headers = ['ID', 'Header', 'Type', 'Status', 'Target', 'Limit', 'Reviewer', 'Category'];
 
   // Create TSV content
-  let tsvContent = headers.join("\t") + "\n";
+  let tsvContent = headers.join('\t') + '\n';
 
   // Add data rows
   data.forEach((row) => {
@@ -95,20 +95,20 @@ export const exportToTSV = (data: TableRowData[], filename = "payroll_data.tsv")
       row.status,
       row.target,
       row.limit,
-      row.reviewer || "Unassigned",
+      row.reviewer || 'Unassigned',
       row.category,
     ];
-    tsvContent += values.join("\t") + "\n";
+    tsvContent += values.join('\t') + '\n';
   });
 
   // Create blob and download
-  const blob = new Blob([tsvContent], { type: "text/tab-separated-values;charset=utf-8;" });
-  const link = document.createElement("a");
+  const blob = new Blob([tsvContent], { type: 'text/tab-separated-values;charset=utf-8;' });
+  const link = document.createElement('a');
   const url = URL.createObjectURL(blob);
 
-  link.setAttribute("href", url);
-  link.setAttribute("download", filename);
-  link.style.visibility = "hidden";
+  link.setAttribute('href', url);
+  link.setAttribute('download', filename);
+  link.style.visibility = 'hidden';
 
   document.body.appendChild(link);
   link.click();
@@ -118,7 +118,7 @@ export const exportToTSV = (data: TableRowData[], filename = "payroll_data.tsv")
 /**
  * Generate PDF content as HTML (can be printed or converted to PDF)
  */
-export const generatePDFContent = (data: TableRowData[], title = "Payroll Report"): string => {
+export const generatePDFContent = (data: TableRowData[], title = 'Payroll Report'): string => {
   let html = `
     <html>
       <head>
@@ -154,7 +154,7 @@ export const generatePDFContent = (data: TableRowData[], title = "Payroll Report
 
   // Add data rows
   data.forEach((row) => {
-    const statusClass = row.status === "done" ? "done" : "in-process";
+    const statusClass = row.status === 'done' ? 'done' : 'in-process';
     html += `
       <tr>
         <td>${row.id}</td>
@@ -163,7 +163,7 @@ export const generatePDFContent = (data: TableRowData[], title = "Payroll Report
         <td class="${statusClass}">${row.status}</td>
         <td>${row.target}</td>
         <td>${row.limit}</td>
-        <td>${row.reviewer || "Unassigned"}</td>
+        <td>${row.reviewer || 'Unassigned'}</td>
       </tr>
     `;
   });
@@ -181,9 +181,9 @@ export const generatePDFContent = (data: TableRowData[], title = "Payroll Report
 /**
  * Print table data as PDF (opens print dialog)
  */
-export const printAsPDF = (data: TableRowData[], title = "Payroll Report") => {
+export const printAsPDF = (data: TableRowData[], title = 'Payroll Report') => {
   const htmlContent = generatePDFContent(data, title);
-  const printWindow = window.open("", "", "height=600,width=800");
+  const printWindow = window.open('', '', 'height=600,width=800');
 
   if (printWindow) {
     printWindow.document.write(htmlContent);

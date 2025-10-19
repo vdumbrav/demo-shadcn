@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   AlertDialog,
   AlertDialogContent,
@@ -8,7 +8,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+} from '@/components/ui/alert-dialog';
 
 interface BatchDeleteDialogProps {
   children?: React.ReactNode;
@@ -21,11 +21,7 @@ interface BatchDeleteDialogProps {
  * Alert dialog for confirming deletion of multiple payments
  * Shows the count of payments to be deleted
  */
-export function BatchDeleteDialog({
-  children,
-  count = 3,
-  onDelete,
-}: BatchDeleteDialogProps) {
+export function BatchDeleteDialog({ children, count = 3, onDelete }: BatchDeleteDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleDelete = () => {

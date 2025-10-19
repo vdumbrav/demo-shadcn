@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Dialog,
   DialogContent,
@@ -11,14 +11,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Separator } from "@/components/ui/separator";
-import { DatePicker } from "@/components/ui/date-picker";
-import { DateRangePicker, type DateRange } from "@/components/ui/date-range-picker";
-import { startPayrollSchema, type StartPayrollFormData } from "../data/validationSchemas";
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Separator } from '@/components/ui/separator';
+import { DatePicker } from '@/components/ui/date-picker';
+import { DateRangePicker, type DateRange } from '@/components/ui/date-range-picker';
+import { startPayrollSchema, type StartPayrollFormData } from '../data/validationSchemas';
 
 interface StartPayrollDialogProps {
   children?: React.ReactNode;
@@ -45,19 +45,19 @@ export function StartPayrollDialog({ children, onSubmit }: StartPayrollDialogPro
   } = useForm<StartPayrollFormData>({
     resolver: zodResolver(startPayrollSchema),
     defaultValues: {
-      payrollType: "new",
+      payrollType: 'new',
       addRecurring: false,
       payrollName: "November '25 (corp)",
     },
   });
 
-  const payrollType = watch("payrollType");
+  const payrollType = watch('payrollType');
 
   const onSubmitForm = async (data: StartPayrollFormData) => {
     try {
       // Validate dates are set
       if (!periodRange?.from || !periodRange?.to || !paymentDate) {
-        alert("Please select both period dates and payment date");
+        alert('Please select both period dates and payment date');
         return;
       }
 
@@ -73,52 +73,48 @@ export function StartPayrollDialog({ children, onSubmit }: StartPayrollDialogPro
       setIsOpen(false);
       reset();
     } catch (error) {
-      console.error("Form submission error:", error);
+      console.error('Form submission error:', error);
     }
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        {children || <Button>Start Payroll</Button>}
-      </DialogTrigger>
+      <DialogTrigger asChild>{children || <Button>Start Payroll</Button>}</DialogTrigger>
       <DialogContent className="sm:max-w-[700px]">
         <DialogHeader>
           <DialogTitle>Start payroll</DialogTitle>
-          <DialogDescription>
-            Choose how you want to create your payroll draft.
-          </DialogDescription>
+          <DialogDescription>Choose how you want to create your payroll draft.</DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit(onSubmitForm)} className="space-y-6 py-4">
           {/* Radio Group - Payroll Type Selection (Horizontal) */}
           <div>
             <RadioGroup value={payrollType} className="grid grid-cols-2 gap-4">
-              <div className="flex items-start space-x-3 space-y-0 rounded-md border p-4">
-                <RadioGroupItem value="new" id="new" {...register("payrollType")} />
-                <div className="space-y-1 leading-none flex-1">
+              <div className="flex items-start space-y-0 space-x-3 rounded-md border p-4">
+                <RadioGroupItem value="new" id="new" {...register('payrollType')} />
+                <div className="flex-1 space-y-1 leading-none">
                   <Label htmlFor="new" className="font-medium">
                     Start new payroll
                   </Label>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-muted-foreground text-sm">
                     Create a blank draft with no employees.
                   </p>
                 </div>
               </div>
-              <div className="flex items-start space-x-3 space-y-0 rounded-md border p-4">
-                <RadioGroupItem value="repeat" id="repeat" {...register("payrollType")} />
-                <div className="space-y-1 leading-none flex-1">
+              <div className="flex items-start space-y-0 space-x-3 rounded-md border p-4">
+                <RadioGroupItem value="repeat" id="repeat" {...register('payrollType')} />
+                <div className="flex-1 space-y-1 leading-none">
                   <Label htmlFor="repeat" className="font-medium">
                     Repeat last payroll
                   </Label>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-muted-foreground text-sm">
                     Copy employees, amounts, and network settings from last cycle.
                   </p>
                 </div>
               </div>
             </RadioGroup>
             {errors.payrollType && (
-              <p className="text-sm text-red-500 mt-2">{errors.payrollType.message}</p>
+              <p className="mt-2 text-sm text-red-500">{errors.payrollType.message}</p>
             )}
           </div>
 
@@ -128,8 +124,8 @@ export function StartPayrollDialog({ children, onSubmit }: StartPayrollDialogPro
             <Input
               id="payroll-name"
               placeholder="November '25 (corp)"
-              {...register("payrollName")}
-              className={errors.payrollName ? "border-red-500" : ""}
+              {...register('payrollName')}
+              className={errors.payrollName ? 'border-red-500' : ''}
             />
             {errors.payrollName && (
               <p className="text-sm text-red-500">{errors.payrollName.message}</p>
@@ -146,9 +142,7 @@ export function StartPayrollDialog({ children, onSubmit }: StartPayrollDialogPro
                 placeholder="Select period"
                 className="w-full"
               />
-              {!periodRange && (
-                <p className="text-sm text-red-500">Please select a period</p>
-              )}
+              {!periodRange && <p className="text-sm text-red-500">Please select a period</p>}
             </div>
             <div className="space-y-2">
               <Label htmlFor="payment-date">Payment date</Label>
@@ -158,9 +152,7 @@ export function StartPayrollDialog({ children, onSubmit }: StartPayrollDialogPro
                 placeholder="Select payment date"
                 className="w-full"
               />
-              {!paymentDate && (
-                <p className="text-sm text-red-500">Please select a payment date</p>
-              )}
+              {!paymentDate && <p className="text-sm text-red-500">Please select a payment date</p>}
             </div>
           </div>
 
@@ -168,10 +160,7 @@ export function StartPayrollDialog({ children, onSubmit }: StartPayrollDialogPro
 
           {/* Add Recurring Checkbox */}
           <div className="flex items-center space-x-2">
-            <Checkbox
-              id="add-recurring"
-              {...register("addRecurring")}
-            />
+            <Checkbox id="add-recurring" {...register('addRecurring')} />
             <Label htmlFor="add-recurring" className="text-sm font-normal">
               Add Recurring
             </Label>
@@ -182,7 +171,7 @@ export function StartPayrollDialog({ children, onSubmit }: StartPayrollDialogPro
               Cancel
             </Button>
             <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Starting..." : "Start payroll"}
+              {isSubmitting ? 'Starting...' : 'Start payroll'}
             </Button>
           </DialogFooter>
         </form>
