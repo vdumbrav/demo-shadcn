@@ -46,28 +46,25 @@ export function VisitorsChart() {
             variant="outline"
             className="w-full sm:w-auto"
           >
-            <ToggleGroupItem value="today" className="min-w-[60px] sm:min-w-[80px] text-xs sm:text-sm flex items-center gap-1">
-              <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span>Today</span>
+            <ToggleGroupItem value="today" className="min-w-[40px] sm:min-w-[80px] text-xs sm:text-sm flex items-center gap-1">
+              <Clock className="w-4 h-4" />
+              <span className="hidden sm:inline">Today</span>
             </ToggleGroupItem>
-            <ToggleGroupItem value="last-7-days" className="min-w-[60px] sm:min-w-[90px] text-xs sm:text-sm flex items-center gap-1">
-              <CalendarDays className="w-3 h-3 sm:w-4 sm:h-4" />
+            <ToggleGroupItem value="last-7-days" className="min-w-[40px] sm:min-w-[90px] text-xs sm:text-sm flex items-center gap-1">
+              <CalendarDays className="w-4 h-4" />
               <span className="hidden sm:inline">7 days</span>
-              <span className="sm:hidden">Week</span>
             </ToggleGroupItem>
-            <ToggleGroupItem value="last-30-days" className="min-w-[60px] sm:min-w-[90px] text-xs sm:text-sm flex items-center gap-1">
-              <BarChart3 className="w-3 h-3 sm:w-4 sm:h-4" />
+            <ToggleGroupItem value="last-30-days" className="min-w-[40px] sm:min-w-[90px] text-xs sm:text-sm flex items-center gap-1">
+              <BarChart3 className="w-4 h-4" />
               <span className="hidden sm:inline">Month</span>
-              <span className="sm:hidden">Mo</span>
             </ToggleGroupItem>
-            <ToggleGroupItem value="last-3-months" className="min-w-[70px] sm:min-w-[100px] text-xs sm:text-sm flex items-center gap-1">
-              <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4" />
+            <ToggleGroupItem value="last-3-months" className="min-w-[40px] sm:min-w-[100px] text-xs sm:text-sm flex items-center gap-1">
+              <TrendingUp className="w-4 h-4" />
               <span className="hidden sm:inline">Quarter</span>
-              <span className="sm:hidden">Qtr</span>
             </ToggleGroupItem>
-            <ToggleGroupItem value="last-year" className="min-w-[60px] sm:min-w-[80px] text-xs sm:text-sm flex items-center gap-1">
-              <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span>Year</span>
+            <ToggleGroupItem value="last-year" className="min-w-[40px] sm:min-w-[80px] text-xs sm:text-sm flex items-center gap-1">
+              <Calendar className="w-4 h-4" />
+              <span className="hidden sm:inline">Year</span>
             </ToggleGroupItem>
           </ToggleGroup>
         </div>
