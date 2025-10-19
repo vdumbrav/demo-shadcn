@@ -32,7 +32,7 @@ export function BatchDeleteDialog({ children, count = 3, onDelete }: BatchDelete
   return (
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
       <AlertDialogTrigger asChild>
-        {children || <Button variant="destructive">Delete Selected</Button>}
+        {children ?? <Button variant="destructive">Delete Selected</Button>}
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

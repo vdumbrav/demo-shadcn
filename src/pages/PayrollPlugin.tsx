@@ -588,9 +588,7 @@ export default function PayrollPlugin() {
                             <TableCell>{row.target}</TableCell>
                             <TableCell>{row.limit}</TableCell>
                             <TableCell>
-                              {row.reviewer ? (
-                                row.reviewer
-                              ) : (
+                              {row.reviewer ?? (
                                 <DropdownMenu>
                                   <DropdownMenuTrigger asChild>
                                     <Button variant="outline" disabled className="opacity-50">

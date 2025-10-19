@@ -48,7 +48,7 @@ export const columns: ColumnDef<Payment>[] = [
     header: ({ table }) => (
       <Checkbox
         checked={
-          table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate')
+          table.getIsAllPageRowsSelected() ?? (table.getIsSomePageRowsSelected() && 'indeterminate')
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
@@ -134,7 +134,7 @@ export const columns: ColumnDef<Payment>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => navigator.clipboard.writeText(payment.id)}>
+            <DropdownMenuItem onClick={() => void navigator.clipboard.writeText(payment.id)}>
               Copy payment ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -152,7 +152,10 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
-export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({
+  columns: columnsData,
+  data,
+}: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
@@ -160,7 +163,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
 
   const table = useReactTable({
     data,
-    columns,
+    columns: columnsData,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -243,7 +246,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell colSpan={columnsData.length} className="h-24 text-center">
                   No results.
                 </TableCell>
               </TableRow>

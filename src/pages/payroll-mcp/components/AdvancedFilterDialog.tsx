@@ -173,7 +173,7 @@ export function AdvancedFilterDialog({ filters, onFiltersChange }: AdvancedFilte
                       ...localFilters,
                       targetRange: {
                         ...localFilters.targetRange,
-                        min: Math.max(0, Math.min(parseInt(e.target.value) || 0, 100)),
+                        min: Math.max(0, Math.min(parseInt(e.target.value) ?? 0, 100)),
                       },
                     })
                   }
@@ -194,7 +194,7 @@ export function AdvancedFilterDialog({ filters, onFiltersChange }: AdvancedFilte
                       ...localFilters,
                       targetRange: {
                         ...localFilters.targetRange,
-                        max: Math.max(0, Math.min(parseInt(e.target.value) || 100, 100)),
+                        max: Math.max(0, Math.min(parseInt(e.target.value) ?? 100, 100)),
                       },
                     })
                   }

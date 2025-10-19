@@ -79,14 +79,14 @@ export function StartPayrollDialog({ children, onSubmit }: StartPayrollDialogPro
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>{children || <Button>Start Payroll</Button>}</DialogTrigger>
+      <DialogTrigger asChild>{children ?? <Button>Start Payroll</Button>}</DialogTrigger>
       <DialogContent className="sm:max-w-[700px]">
         <DialogHeader>
           <DialogTitle>Start payroll</DialogTitle>
           <DialogDescription>Choose how you want to create your payroll draft.</DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit(onSubmitForm)} className="space-y-6 py-4">
+        <form onSubmit={(e) => void handleSubmit(onSubmitForm)(e)} className="space-y-6 py-4">
           {/* Radio Group - Payroll Type Selection (Horizontal) */}
           <div>
             <RadioGroup value={payrollType} className="grid grid-cols-2 gap-4">

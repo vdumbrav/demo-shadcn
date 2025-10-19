@@ -230,7 +230,7 @@ export function PayrollTable() {
   };
 
   const renderReviewerCell = (row: TableRowData) => {
-    const assignedReviewer = reviewerAssignments[row.id] || row.reviewer;
+    const assignedReviewer = reviewerAssignments[row.id] ?? row.reviewer;
 
     if (assignedReviewer) {
       return (
@@ -676,7 +676,7 @@ export function PayrollTable() {
           </div>
           <div className="flex items-center gap-4">
             <span className="text-xs font-medium whitespace-nowrap sm:text-sm">
-              Page {currentPage} of {totalPages || 1}
+              Page {currentPage} of {totalPages ?? 1}
             </span>
             <div className="flex items-center gap-1 sm:gap-2">
               <Button

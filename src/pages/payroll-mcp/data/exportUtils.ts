@@ -28,7 +28,7 @@ export const exportToCSV = (data: TableRowData[], filename = 'payroll_data.csv')
       row.status,
       row.target,
       row.limit,
-      row.reviewer || 'Unassigned',
+      row.reviewer ?? 'Unassigned',
       row.category,
     ];
     csvContent += `${values.join(',')}\n`;
@@ -95,7 +95,7 @@ export const exportToTSV = (data: TableRowData[], filename = 'payroll_data.tsv')
       row.status,
       row.target,
       row.limit,
-      row.reviewer || 'Unassigned',
+      row.reviewer ?? 'Unassigned',
       row.category,
     ];
     tsvContent += `${values.join('\t')}\n`;
@@ -163,7 +163,7 @@ export const generatePDFContent = (data: TableRowData[], title = 'Payroll Report
         <td class="${statusClass}">${row.status}</td>
         <td>${row.target}</td>
         <td>${row.limit}</td>
-        <td>${row.reviewer || 'Unassigned'}</td>
+        <td>${row.reviewer ?? 'Unassigned'}</td>
       </tr>
     `;
   });

@@ -46,12 +46,12 @@ export function EditPaymentDialog({ children, paymentData, onSave }: EditPayment
   } = useForm<EditPaymentFormData>({
     resolver: zodResolver(editPaymentSchema),
     defaultValues: {
-      employee: paymentData?.employee || 'Elvin Bond',
-      payoutMethod: paymentData?.payoutMethod || 'Crypto',
-      wallet: paymentData?.wallet || '0x4Fe9D98C19F0aA3427cE56Df2b843D6b3b932Dd8',
-      network: paymentData?.network || 'BSC',
-      currency: paymentData?.currency || 'USDT',
-      amount: paymentData?.amount || '1600.00',
+      employee: paymentData?.employee ?? 'Elvin Bond',
+      payoutMethod: paymentData?.payoutMethod ?? 'Crypto',
+      wallet: paymentData?.wallet ?? '0x4Fe9D98C19F0aA3427cE56Df2b843D6b3b932Dd8',
+      network: paymentData?.network ?? 'BSC',
+      currency: paymentData?.currency ?? 'USDT',
+      amount: paymentData?.amount ?? '1600.00',
     },
   });
 
@@ -68,7 +68,7 @@ export function EditPaymentDialog({ children, paymentData, onSave }: EditPayment
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        {children || <Button variant="outline">Edit Payment</Button>}
+        {children ?? <Button variant="outline">Edit Payment</Button>}
       </DialogTrigger>
       <DialogContent className="bg-background border-border max-w-lg rounded-lg border p-6">
         <DialogHeader className="flex flex-col gap-1.5 text-left">
@@ -78,13 +78,13 @@ export function EditPaymentDialog({ children, paymentData, onSave }: EditPayment
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit(handleSave)} className="flex flex-col gap-7">
+        <form onSubmit={(e) => void handleSubmit(handleSave)(e)} className="flex flex-col gap-7">
           {/* Row 1: Employee and Payout Method - 2 selectors, 50% each */}
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-3">
               <Label className="text-foreground text-sm font-medium">Employee</Label>
               <Select
-                defaultValue={paymentData?.employee || 'Elvin Bond'}
+                defaultValue={paymentData?.employee ?? 'Elvin Bond'}
                 {...register('employee')}
               >
                 <SelectTrigger
@@ -151,7 +151,7 @@ export function EditPaymentDialog({ children, paymentData, onSave }: EditPayment
             <div className="flex flex-col gap-3">
               <Label className="text-foreground text-sm font-medium">Payout Method</Label>
               <Select
-                defaultValue={paymentData?.payoutMethod || 'Crypto'}
+                defaultValue={paymentData?.payoutMethod ?? 'Crypto'}
                 {...register('payoutMethod')}
               >
                 <SelectTrigger
@@ -185,7 +185,7 @@ export function EditPaymentDialog({ children, paymentData, onSave }: EditPayment
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-3">
               <Label className="text-foreground text-sm font-medium">Network</Label>
-              <Select defaultValue={paymentData?.network || 'BSC'} {...register('network')}>
+              <Select defaultValue={paymentData?.network ?? 'BSC'} {...register('network')}>
                 <SelectTrigger
                   className={`bg-background h-9 w-full rounded-md border px-3 py-2 ${errors.network ? 'border-red-500' : 'border-input'}`}
                 >
@@ -202,7 +202,7 @@ export function EditPaymentDialog({ children, paymentData, onSave }: EditPayment
 
             <div className="flex flex-col gap-3">
               <Label className="text-foreground text-sm font-medium">Currency Token</Label>
-              <Select defaultValue={paymentData?.currency || 'USDT'} {...register('currency')}>
+              <Select defaultValue={paymentData?.currency ?? 'USDT'} {...register('currency')}>
                 <SelectTrigger
                   className={`bg-background h-9 w-full rounded-md border px-3 py-2 ${errors.currency ? 'border-red-500' : 'border-input'}`}
                 >

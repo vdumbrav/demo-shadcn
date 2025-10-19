@@ -30,7 +30,7 @@ export function DeletePaymentDialog({ children, onDelete }: DeletePaymentDialogP
   return (
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
       <AlertDialogTrigger asChild>
-        {children || <Button variant="destructive">Delete</Button>}
+        {children ?? <Button variant="destructive">Delete</Button>}
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
